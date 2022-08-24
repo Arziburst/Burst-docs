@@ -1,5 +1,6 @@
 // Core
 import React, { FC, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // Bus
 import { useLinkAnchorRedux } from '../../../bus/client/linkAnchor';
@@ -22,6 +23,7 @@ import { linkSidebar, TypeLinkSidebar } from '../../linkSidebar';
 
 
 export const SideBar: FC = () => {
+    const { pathname } = useLocation();
     const { refs } = useContext(ContextApp);
     const { togglesRedux, setToggleAction } = useTogglesRedux();
     const {
@@ -64,7 +66,7 @@ export const SideBar: FC = () => {
 
                             return (
                                 <li key = { element.text }>
-                                    <details>
+                                    <S.Details isActive = { element.path === pathname }>
                                         <summary>
                                             <ItemNav
                                                 onclick = { onClickTitle }
@@ -83,7 +85,7 @@ export const SideBar: FC = () => {
                                                 </S.SubtitleNav>
                                             ),
                                         )}
-                                    </details>
+                                    </S.Details>
                                 </li>
                             );
                         })
