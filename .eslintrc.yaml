@@ -13,10 +13,24 @@ parserOptions:
 env:
     browser: true
     node: true
-    es6: true
+
+globals:
+    __ENV__: false
+    __DEV__: false
+    __STAGE__: false
+    __PROD__: false
+    __TEST__: false
+    __MODEL__: false
+    __: false
+    React: false
+    shallow: false
+    render: false
+    mount: false
 
 plugins:
+    - react
     - babel
+    - react-hooks
     - import
     - "@typescript-eslint"
 
@@ -25,6 +39,93 @@ settings:
         version: detect
 
 rules:
+    # hooks
+    react-hooks/rules-of-hooks: 2
+
+    # React core
+    react/no-access-state-in-setstate: 2
+    react/no-children-prop: 0
+    react/no-deprecated: 2
+    react/no-danger: 2
+    react/no-did-mount-set-state: 2
+    react/no-direct-mutation-state: 2
+    react/no-redundant-should-component-update: 2
+    react/no-render-return-value: 2
+    react/no-typos: 2
+    react/no-string-refs: 2
+    react/no-this-in-sfc: 2
+    react/no-unknown-property: 2
+    react/no-unused-prop-types: 2
+    react/no-unused-state: 2
+    react/react-in-jsx-scope: 2
+    react/void-dom-elements-no-children: 2
+    react/sort-comp:
+        - 2
+        - order:
+              - static-methods
+              - lifecycle
+              - everything-else
+              - render
+          groups:
+              lifecycle:
+                  - displayName
+                  - statics
+                  - propTypes
+                  - defaultProps
+                  - constructor
+                  - state
+                  - getDerivedStateFromProps
+                  - componentDidMount
+                  - shouldComponentUpdate
+                  - getSnapshotBeforeUpdate
+                  - componentDidUpdate
+                  - componentWillUnmount
+                  - componentDidCatch
+
+    # React JSX
+    react/jsx-boolean-value: 2
+    react/jsx-curly-spacing:
+        - 2
+        - always
+        - spacing:
+              objectLiterals: never
+    react/jsx-equals-spacing:
+        - 2
+        - always
+    react/jsx-indent:
+        - 2
+        - 4
+    react/jsx-indent-props:
+        - 2
+        - 4
+    react/jsx-no-comment-textnodes: 2
+    react/jsx-no-duplicate-props: 2
+    react/jsx-no-target-blank: 2
+    react/jsx-no-undef: 2
+    react/jsx-pascal-case: 2
+    react/jsx-uses-react: 2
+    react/jsx-uses-vars: 2
+    react/jsx-max-props-per-line: 2
+    react/jsx-first-prop-new-line: 2
+    react/jsx-closing-bracket-location:
+        - 2
+        - nonEmpty: after-props
+          selfClosing: tag-aligned
+    react/jsx-closing-tag-location: 2
+    react/jsx-sort-props:
+        - 2
+        - callbacksLast: true
+          shorthandFirst: true
+          shorthandLast: false
+    react/jsx-wrap-multilines:
+        - 2
+        - declaration: parens-new-line
+          assignment: parens-new-line
+          return: parens-new-line
+          arrow: parens-new-line
+          condition: ignore
+          logical: ignore
+          prop: ignore
 
     # ESLint: possible errors
     for-direction: 2
@@ -337,7 +438,6 @@ rules:
     babel/new-cap: 0
 
     # TypeScript
-    # "@typescript-eslint/no-unused-vars-experimental": 2
     "@typescript-eslint/no-unused-vars": 2
     "@typescript-eslint/no-use-before-define": 2
     "@typescript-eslint/indent":

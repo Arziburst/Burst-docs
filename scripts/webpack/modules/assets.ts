@@ -8,11 +8,23 @@ import FontminPlugin from 'fontmin-webpack';
 // Constants
 import { STATIC_DIRECTORY, APP_NAME } from '../constants';
 
+export const loadMdFiles = (): Configuration => ({
+    module: {
+        rules: [
+            {
+                test: /\.md$/i,
+                use:  'raw-loader',
+            },
+        ],
+    },
+});
+
 export const connectHtml = (): Configuration => ({
     plugins: [
         new HtmlWebpackPlugin({
             template: `${STATIC_DIRECTORY}/template.html`,
             title:    APP_NAME,
+            favicon:  `${STATIC_DIRECTORY}/favicon.ico`,
         }),
     ],
 });

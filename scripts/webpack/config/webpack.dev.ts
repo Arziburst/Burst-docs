@@ -15,9 +15,9 @@ export const getDevConfig = () => {
             devtool: 'eval-cheap-module-source-map',
             stats:   'none',
         },
-        modules.connectFriendlyErrors(),
-        modules.connectHtml(),
         modules.loadImagesDev(),
+        modules.loadDevCss(),
         modules.loadFontsDev(),
+        modules.connectFriendlyErrors(),
     );
 };

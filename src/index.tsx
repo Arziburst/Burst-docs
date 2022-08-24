@@ -1,56 +1,28 @@
 // Core
-import React, { FC } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { MemoryRouter } from 'react-router-dom';
-import styled, { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
 
-// Routes
-import { Routes } from './view/routes';
+// Init
+import { store as reduxStore } from './init';
 
-// Assets
-import { GlobalStyles, defaultTheme } from './assets';
+// View
+import { App } from './view';
 
-// Styles
-const AppContainer = styled.div`
-    height: 100vh;
-    width: 100vw;
-`;
-
-const BurstDocs: FC = () => {
+const Root = () => {
     return (
-        <MemoryRouter>
-            <ThemeProvider theme={defaultTheme}>
-                <GlobalStyles />
-                <AppContainer>
-                    <Routes />
-                </AppContainer>
-            </ThemeProvider>
-        </MemoryRouter>
+        <ReduxProvider store = { reduxStore }>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ReduxProvider>
     );
 };
 
-export const RenderDocsWithIframe = () => {
-    const iFrame = document.createElement('iframe');
-    iFrame.setAttribute('id', 'iframe-burst-docs');
-    document.body.appendChild(iFrame);
-    const iFrameBody = iFrame?.contentDocument?.body;
+const container = document.getElementById('app');
 
-    const container = document.createElement('div');
-    container.setAttribute('id', 'burst-docs');
-
-    iFrameBody?.appendChild(container);
-
-    if (container) {
-        const root = createRoot(container);
-        root.render(<BurstDocs />);
-    }
-};
-
-if (process.env.NODE_ENV === 'development') {
-    RenderDocsWithIframe();
+if (container) {
+    const root = createRoot(container);
+    root.render(<Root />);
 }
-
-try {
-    exports.RenderDocsWithIframe = RenderDocsWithIframe;
-} catch (error) {} // eslint-disable-line no-empty
-

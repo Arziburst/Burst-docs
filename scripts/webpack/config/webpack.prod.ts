@@ -9,19 +9,18 @@ import * as modules from '../modules';
 
 export const getProdConfig = () => {
     return merge(
-        modules.cleanDirectories(),
         getCommonConfig(),
         {
-            mode:    'none',
-            devtool: 'source-map',
-            output:  {
-                library: 'BurstDocs',
-            },
+            mode:    'production',
+            devtool: false,
         },
         modules.cleanDirectories(),
         modules.loadImagesProd(),
+        modules.loadProdCss(),
         modules.loadFontsProd(),
+        modules.filterMomentLocales(),
         modules.connectBuildProgressIndicator(),
         modules.optimizeBuild(),
+        modules.connectBundleAnalyzer(),
     );
 };

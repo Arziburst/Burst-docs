@@ -1,12 +1,10 @@
 // Core
-import {
-    Configuration,
-    DefinePlugin,
-} from 'webpack';
+import dotenv from 'dotenv';
 import WebpackBar from 'webpackbar';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack';
 // @ts-ignore
 import FriendlyErrorsWebpackPlugin from '@soda/friendly-errors-webpack-plugin';
-import dotenv from 'dotenv';
 
 export const connectBuildProgressIndicator = (): Configuration => ({
     plugins: [ new WebpackBar({ basic: true }) ],
@@ -14,6 +12,16 @@ export const connectBuildProgressIndicator = (): Configuration => ({
 
 export const connectFriendlyErrors = (): Configuration => ({
     plugins: [ new FriendlyErrorsWebpackPlugin() ],
+});
+
+export const connectBundleAnalyzer = (): Configuration => ({
+    plugins: [
+        new BundleAnalyzerPlugin({
+            analyzerMode:      'disabled',
+            openAnalyzer:      false,
+            generateStatsFile: true,
+        }),
+    ],
 });
 
 export const defineEnvVariables = (): Configuration => {
@@ -37,3 +45,11 @@ export const defineEnvVariables = (): Configuration => {
         ],
     };
 };
+
+export const provideGlobals = (): Configuration => ({
+    plugins: [
+        new ProvidePlugin({
+            React: 'react',
+        }),
+    ],
+});
