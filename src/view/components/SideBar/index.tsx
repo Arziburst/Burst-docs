@@ -1,6 +1,5 @@
 // Core
 import React, { FC, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
 
 // Bus
 import { useLinkAnchorRedux } from '../../../bus/client/linkAnchor';
@@ -9,11 +8,15 @@ import { useTogglesRedux } from '../../../bus/client/toggles';
 // Context
 import { ContextApp } from '../..';
 
+
 // Container
 import { ContainerScrollbar } from '../../containers';
 
+// Components
+import { Details } from '../Details';
+
 // Elements
-import { ItemNav, Link } from '../../elements';
+import { ItemNav } from '../../elements';
 
 // Styles
 import * as S from './styles';
@@ -23,7 +26,6 @@ import { linkSidebar, TypeLinkSidebar } from '../../linkSidebar';
 
 
 export const SideBar: FC = () => {
-    const { pathname } = useLocation();
     const { refs } = useContext(ContextApp);
     const { togglesRedux, setToggleAction } = useTogglesRedux();
     const {
@@ -66,7 +68,12 @@ export const SideBar: FC = () => {
 
                             return (
                                 <li key = { element.text }>
-                                    <S.Details isActive = { element.path === pathname }>
+                                    <Details
+                                        element = { element }
+                                        onClickSubtitle = { onClickSubtitle }
+                                        onClickTitle = { onClickTitle }
+                                    />
+                                    {/* <S.Details isActive = { element.path === pathname }>
                                         <summary>
                                             <ItemNav
                                                 onclick = { onClickTitle }
@@ -85,7 +92,7 @@ export const SideBar: FC = () => {
                                                 </S.SubtitleNav>
                                             ),
                                         )}
-                                    </S.Details>
+                                    </S.Details> */}
                                 </li>
                             );
                         })
