@@ -12,7 +12,7 @@ export const Container = styled.nav<PropTypesContainer>`
     height: calc(100vh - 69px);
     position: fixed;
     background-color: white;
-    z-index: 9;
+    z-index: 99;
     width: 300px;
     
     transform: translate(-110%, 0%);

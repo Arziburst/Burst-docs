@@ -9,7 +9,7 @@ type PropTypes = {
 const gap = '16px';
 
 export const Container = styled.header`
-    z-index: 10;
+    z-index: 100;
     padding: 8px 16px;
     box-shadow: 0 0 2.25rem #9da5ab;
     display: flex;
