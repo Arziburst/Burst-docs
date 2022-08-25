@@ -2,31 +2,11 @@
 import styled from 'styled-components';
 
 // Types
-interface PropTypesDetails extends React.HTMLAttributes<HTMLDetailsElement> {
-    isActive: boolean
-}
-
 interface PropTypesMarker extends React.HTMLAttributes<HTMLDivElement> {
     isOpen: boolean
     isActive: boolean
     wasOpen: boolean
 }
-
-export const Subtitle = styled.h3`
-    margin: 10px 0px;
-    margin-left: 50px;
-    font-family: ${({ theme }) => theme.fontFamily.primary};
-    font-size: 18px;
-    color: ${({ theme }) => theme.sidebar.fontColor.primary};
-    cursor: pointer;
-
-    &:hover, &:focus {
-        color: ${({ theme }) => theme.sidebar.fontColor.hover};
-    }
-`;
-
-export const Details = styled.div<PropTypesDetails>`
-`;
 
 export const Marker = styled.div<PropTypesMarker>`
 
@@ -126,5 +106,9 @@ export const Title = styled.div`
     display: flex;
     align-items: center;
 `;
+
 export const Body = styled.div`
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
 `;

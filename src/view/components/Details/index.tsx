@@ -2,8 +2,8 @@
 import React, { FC, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// Elements
-import { ItemNav, Link } from '../../elements';
+// Components
+import { ItemNav } from '../';
 
 // Styles
 import * as S from './styles';
@@ -24,8 +24,7 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
     const [ wasOpen, setWasOpen ] = useState(false);
 
     return (
-        <S.Details
-            isActive = { element.path === pathname }
+        <div
             { ...props }>
             <S.Title>
                 <S.Marker
@@ -38,8 +37,10 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                     } }
                 />
                 <ItemNav
+                    define
                     onclick = { onClickTitle }
-                    to = { element.path }>
+                    to = { element.path }
+                    variant = 'h2'>
                     {element.text}
                 </ItemNav>
             </S.Title>
@@ -47,17 +48,17 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                 <S.Body>
                     {element.subtitles && element.subtitles.map(
                         (el) => (
-                            <S.Subtitle key = { el.text }>
-                                <Link
-                                    to = { element.path }
-                                    onClick = { () => onClickSubtitle(el.text) }>
-                                    {el.text}
-                                </Link>
-                            </S.Subtitle>
+                            <ItemNav
+                                key = { el.text }
+                                onclick = { () => onClickSubtitle(el.text) }
+                                to = { element.path }
+                                variant = 'h3'>
+                                {el.text}
+                            </ItemNav>
                         ),
                     )}
                 </S.Body>
             )}
-        </S.Details>
+        </div>
     );
 };

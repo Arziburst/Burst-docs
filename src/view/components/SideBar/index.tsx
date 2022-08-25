@@ -13,10 +13,7 @@ import { ContextApp } from '../..';
 import { ContainerScrollbar } from '../../containers';
 
 // Components
-import { Details } from '../Details';
-
-// Elements
-import { ItemNav } from '../../elements';
+import { Details, ItemNav } from '../';
 
 // Styles
 import * as S from './styles';
@@ -58,8 +55,10 @@ export const SideBar: FC = () => {
                                 return (
                                     <li key = { element.path }>
                                         <ItemNav
+                                            define
                                             onclick = { onClickTitle }
-                                            to = { element.path }>
+                                            to = { element.path }
+                                            variant = 'h2'>
                                             {element.text}
                                         </ItemNav>
                                     </li>
@@ -73,26 +72,6 @@ export const SideBar: FC = () => {
                                         onClickSubtitle = { onClickSubtitle }
                                         onClickTitle = { onClickTitle }
                                     />
-                                    {/* <S.Details isActive = { element.path === pathname }>
-                                        <summary>
-                                            <ItemNav
-                                                onclick = { onClickTitle }
-                                                to = { element.path }>
-                                                {element.text}
-                                            </ItemNav>
-                                        </summary>
-                                        {element.subtitles.map(
-                                            (el) => (
-                                                <S.SubtitleNav key = { el.text }>
-                                                    <Link
-                                                        to = { element.path }
-                                                        onClick = { () => onClickSubtitle(el.text) }>
-                                                        {el.text}
-                                                    </Link>
-                                                </S.SubtitleNav>
-                                            ),
-                                        )}
-                                    </S.Details> */}
                                 </li>
                             );
                         })

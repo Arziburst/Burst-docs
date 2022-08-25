@@ -9,6 +9,7 @@ export const defaultTheme = {
             active: '#f7808d',
             close:  '#9da5ab',
             hover:  '#f6b5bc',
+            click:  '#da717d',
         },
         fontColor: {
             primary: '#000',
