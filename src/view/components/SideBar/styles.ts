@@ -12,7 +12,7 @@ export const Container = styled.nav<PropTypesContainer>`
     height: calc(100vh - 69px);
     position: fixed;
     background-color: white;
-    z-index: 9;
+    z-index: 99;
     width: 300px;
     
     transform: translate(-110%, 0%);
@@ -82,14 +82,3 @@ export const Ul = styled.ul`
     }
 `;
 
-export const SubtitleNav = styled.h3`
-    margin: 10px 0px;
-    margin-left: 30px;
-    font-family: ${({ theme }) => theme.fontFamily.primary};
-    font-size: 18px;
-    cursor: pointer;
-    
-    &:hover, &:focus {
-        color: ${({ theme }) => theme.fontColor.hover};
-    }
-`;

@@ -8,11 +8,12 @@ import { useTogglesRedux } from '../../../bus/client/toggles';
 // Context
 import { ContextApp } from '../..';
 
+
 // Container
 import { ContainerScrollbar } from '../../containers';
 
-// Elements
-import { ItemNav, Link } from '../../elements';
+// Components
+import { Details, ItemNav } from '../';
 
 // Styles
 import * as S from './styles';
@@ -54,8 +55,10 @@ export const SideBar: FC = () => {
                                 return (
                                     <li key = { element.path }>
                                         <ItemNav
+                                            define
                                             onclick = { onClickTitle }
-                                            to = { element.path }>
+                                            to = { element.path }
+                                            variant = 'h2'>
                                             {element.text}
                                         </ItemNav>
                                     </li>
@@ -64,26 +67,11 @@ export const SideBar: FC = () => {
 
                             return (
                                 <li key = { element.text }>
-                                    <details>
-                                        <summary>
-                                            <ItemNav
-                                                onclick = { onClickTitle }
-                                                to = { element.path }>
-                                                {element.text}
-                                            </ItemNav>
-                                        </summary>
-                                        {element.subtitles.map(
-                                            (el) => (
-                                                <S.SubtitleNav key = { el.text }>
-                                                    <Link
-                                                        to = { element.path }
-                                                        onClick = { () => onClickSubtitle(el.text) }>
-                                                        {el.text}
-                                                    </Link>
-                                                </S.SubtitleNav>
-                                            ),
-                                        )}
-                                    </details>
+                                    <Details
+                                        element = { element }
+                                        onClickSubtitle = { onClickSubtitle }
+                                        onClickTitle = { onClickTitle }
+                                    />
                                 </li>
                             );
                         })

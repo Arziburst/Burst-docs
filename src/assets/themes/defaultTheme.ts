@@ -4,6 +4,19 @@ export const defaultTheme = {
         open:  'black',
         close: 'red',
     },
+    sidebar: {
+        detailsColor: {
+            active: '#f7808d',
+            close:  '#9da5ab',
+            hover:  '#f6b5bc',
+            click:  '#da717d',
+        },
+        fontColor: {
+            primary: '#000',
+            active:  '#f7808d',
+            hover:   '#f6b5bc',
+        },
+    },
     scrollbar: {
         primary: '#9da5ab',
         hover:   '#f6b5bc',
@@ -16,8 +29,7 @@ export const defaultTheme = {
     fontColor: {
         primary: '#000',
         active:  '#f7808d',
-
-        hover: '#f6b5bc',
+        hover:   '#f6b5bc',
     },
     fontFamily: {
         primary: 'sans-serif',
