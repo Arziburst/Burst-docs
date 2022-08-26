@@ -102,13 +102,20 @@ export const Marker = styled.div<PropTypesMarker>`
     }}
 `;
 
-export const Title = styled.div`
+export const Title = styled.li`
     display: flex;
     align-items: center;
 `;
 
-export const Body = styled.div`
+export const Body = styled.ul`
     margin-left: 50px;
     display: flex;
     flex-direction: column;
+
+    & > li:first-child {
+        margin-top: 10px;
+    }
+    & > li:not(:last-child) {
+        margin-bottom: 10px;
+    }
 `;
