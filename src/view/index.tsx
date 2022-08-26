@@ -1,6 +1,7 @@
 // Core
 import React, { createContext, FC, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { animated, config, useTransition } from 'react-spring';
 
 // Assets
 import { GlobalStyles, defaultTheme } from '../assets';
@@ -12,7 +13,7 @@ import { useTogglesRedux } from '../bus/client/toggles';
 import { Routes } from './routes';
 
 // Components
-import { Header, SideBar } from './components';
+import { Header, Nav, SideBar } from './components';
 
 // Container
 import { ContainerScrollbar } from './containers';
@@ -31,9 +32,18 @@ type TypesContextApp = {
 export const ContextApp = createContext<TypesContextApp>({ refs: null });
 
 export const App: FC = () => {
-    const { togglesRedux, setToggleAction } = useTogglesRedux();
     const refs = useRef([]);
 
+    const { togglesRedux, setToggleAction } = useTogglesRedux();
+
+    const transitions = useTransition(togglesRedux.isOpenSidebar, {
+        from:   { opacity: 0 },
+        enter:  { opacity: 1 },
+        leave:  { opacity: 0 },
+        config: config.slow,
+    });
+
+    const SDarkAreaAnimated = animated(S.DarkArea);
 
     return (
         <ThemeProvider theme = { defaultTheme }>
@@ -42,15 +52,21 @@ export const App: FC = () => {
                     <GlobalStyles />
                     <Header />
                     <S.Container>
-                        <SideBar />
+                        <S.ContainerNav>
+                            <Nav />
+                        </S.ContainerNav>
                         <ContainerScrollbar style = {{ position: 'relative' }}>
-                            <S.DarkArea
-                                isOpenSidebar = { togglesRedux.isOpenSidebar }
-                                onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: false }) }
-                            />
+                            {transitions(
+                                (styles, item) => item && (
+                                    <SDarkAreaAnimated
+                                        style = { styles }
+                                        onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: false }) }
+                                    />),
+                            )}
                             <S.ContainerMain>
                                 <Routes />
                             </S.ContainerMain>
+                            <SideBar />
                         </ContainerScrollbar>
                     </S.Container>
                 </S.AppContainer>

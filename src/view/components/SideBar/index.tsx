@@ -1,83 +1,26 @@
 // Core
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
+import { animated, config, useTransition } from 'react-spring';
 
 // Bus
-import { useLinkAnchorRedux } from '../../../bus/client/linkAnchor';
 import { useTogglesRedux } from '../../../bus/client/toggles';
 
-// Context
-import { ContextApp } from '../..';
-
-
-// Container
-import { ContainerScrollbar } from '../../containers';
-
 // Components
-import { Details, ItemNav } from '../';
-
-// Styles
-import * as S from './styles';
-
-// Book
-import { linkSidebar, TypeLinkSidebar } from '../../linkSidebar';
-
+import { Nav } from '../';
 
 export const SideBar: FC = () => {
-    const { refs } = useContext(ContextApp);
-    const { togglesRedux, setToggleAction } = useTogglesRedux();
-    const {
-        setLinkAnchorAction,
-    } = useLinkAnchorRedux();
+    const { togglesRedux } = useTogglesRedux();
 
-    const onClickTitle = () => {
-        if (refs) {
-            refs.current = [];
-            setToggleAction({ type: 'isOpenSidebar', value: false });
-        }
-    };
-    const onClickSubtitle = (text: TypeLinkSidebar['text']) => {
-        if (refs) {
-            refs.current = [];
-            const re = new RegExp(' ', 'g');
-            const processedText = text.toLowerCase().replace(re, '-');
-            setLinkAnchorAction(processedText);
-            setToggleAction({ type: 'isOpenSidebar', value: false });
-        }
-    };
+    const transitions = useTransition(togglesRedux.isOpenSidebar, {
+        from:   { position: 'fixed', left: 0, bottom: 0, opacity: 0, transform: 'translateX(-100%)' },
+        enter:  { position: 'fixed', left: 0, bottom: 0, opacity: 1, transform: 'translateX(0%)' },
+        leave:  { position: 'fixed', left: 0, bottom: 0, opacity: 0, transform: 'translateX(-100%)' },
+        config: config.slow,
+    });
 
-    return (
-        <S.Container isOpenSidebar = { togglesRedux.isOpenSidebar }>
-            <ContainerScrollbar style = {{ height: '100%', boxShadow: '0px 4px 0.5rem #9da5ab' }}>
-                <S.Ul>
-                    {
-                        linkSidebar.map((element) => {
-                            if (!element.subtitles) {
-                                return (
-                                    <li key = { element.path }>
-                                        <ItemNav
-                                            define
-                                            onclick = { onClickTitle }
-                                            to = { element.path }
-                                            variant = 'h2'>
-                                            {element.text}
-                                        </ItemNav>
-                                    </li>
-                                );
-                            }
+    const NavAnimated = animated(Nav);
 
-                            return (
-                                <li key = { element.text }>
-                                    <Details
-                                        element = { element }
-                                        onClickSubtitle = { onClickSubtitle }
-                                        onClickTitle = { onClickTitle }
-                                    />
-                                </li>
-                            );
-                        })
-                    }
-                </S.Ul>
-            </ContainerScrollbar>
-        </S.Container>
+    return transitions(
+        (styles, item) => item && <NavAnimated style = { styles } />,
     );
 };

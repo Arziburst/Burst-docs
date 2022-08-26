@@ -1,6 +1,8 @@
 // Core
 import React, { FC, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+// Styles
 import * as S from './styles';
 
 // Types

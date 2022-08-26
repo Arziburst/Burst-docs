@@ -24,7 +24,7 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
     const [ wasOpen, setWasOpen ] = useState(false);
 
     return (
-        <div
+        <ul
             { ...props }>
             <S.Title>
                 <S.Marker
@@ -48,17 +48,19 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                 <S.Body>
                     {element.subtitles && element.subtitles.map(
                         (el) => (
-                            <ItemNav
-                                key = { el.text }
-                                onclick = { () => onClickSubtitle(el.text) }
-                                to = { element.path }
-                                variant = 'h3'>
-                                {el.text}
-                            </ItemNav>
+                            <li>
+                                <ItemNav
+                                    key = { el.text }
+                                    onclick = { () => onClickSubtitle(el.text) }
+                                    to = { element.path }
+                                    variant = 'h3'>
+                                    {el.text}
+                                </ItemNav>
+                            </li>
                         ),
                     )}
                 </S.Body>
             )}
-        </div>
+        </ul>
     );
 };
