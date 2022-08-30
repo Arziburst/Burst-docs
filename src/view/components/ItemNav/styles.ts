@@ -22,12 +22,12 @@ export const ContainerH3 = styled.h2`
 
 export const ButtonStyled = styled(Button)<PropTypesContainer>`
     text-align: left;
-    color: ${({ isActive, theme }) => isActive === true ? theme.fontColor.active : theme.fontColor.primary};
+    color: ${({ isActive, theme }) => isActive === true ? theme.sidebar.fontColor.active : theme.fontColor.primary};
 
     &:hover, &:focus {
-        color: ${({ theme }) => theme.fontColor.hover};
+        color: ${({ theme }) => theme.sidebar.fontColor.hover};
     }
     &:active {
-        color: ${({ theme }) => theme.sidebar.detailsColor.click};
+        color: ${({ theme }) => theme.sidebar.fontColor.click};
     }
 `;

@@ -21,6 +21,6 @@ export const SideBar: FC = () => {
     const NavAnimated = animated(Nav);
 
     return transitions(
-        (styles, item) => item && <NavAnimated style = { styles } />,
+        (styles: object, item) => item && <NavAnimated style = { styles } />,
     );
 };

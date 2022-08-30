@@ -48,9 +48,8 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                 <S.Body>
                     {element.subtitles && element.subtitles.map(
                         (el) => (
-                            <li>
+                            <li key = { el.text }>
                                 <ItemNav
-                                    key = { el.text }
                                     onclick = { () => onClickSubtitle(el.text) }
                                     to = { element.path }
                                     variant = 'h3'>

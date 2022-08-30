@@ -51,7 +51,7 @@ const Button = styled.button<PropTypes>`
         [ '& span:first-child' ]: {
             transform: 'rotate(45deg)',
         },
-        [ ' & span:last-child' ]: {
+        [ '& span:last-child' ]: {
             transform: 'rotate(-45deg)',
 
         },

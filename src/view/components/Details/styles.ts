@@ -54,7 +54,7 @@ export const Marker = styled.div<PropTypesMarker>`
     }
     
     &:hover::after, &:hover::before {
-        background-color: ${({ theme }) => theme.sidebar.detailsColor.hover};
+        background-color: ${({ theme }) => theme.sidebar.fontColor.hover};
     }
 
     &::before, &::after {
@@ -65,7 +65,7 @@ export const Marker = styled.div<PropTypesMarker>`
         content: "";
         width: 100%;
         height: 2px;
-        background-color: ${({ theme, isActive }) => isActive ? theme.sidebar.detailsColor.active : theme.sidebar.detailsColor.close};
+        background-color: ${({ theme, isActive }) => isActive ? theme.sidebar.fontColor.active : theme.sidebar.fontColor.close};
     }
 
     &::before {

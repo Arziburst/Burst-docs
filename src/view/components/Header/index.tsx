@@ -30,7 +30,7 @@ export const Header: FC = ({ ...props }) => {
                             <ContainerHoverScale>
                                 <S.ImageStyled
                                     alt = 'image burst-logo'
-                                    animationdelay = '1s'
+                                    animationDelay = '1s'
                                     src = { burstLogo }
                                 />
                             </ContainerHoverScale>
@@ -43,7 +43,7 @@ export const Header: FC = ({ ...props }) => {
                         title = 'GitHub'>
                         <ContainerHoverScale>
                             <S.SvgStyled
-                                animationdelay = '2s'
+                                animationDelay = '2s'
                                 aria-hidden = 'true'
                                 className = 'octicon octicon-mark-github v-align-middle'
                                 data-view-component = 'true'
@@ -63,7 +63,7 @@ export const Header: FC = ({ ...props }) => {
                         title = 'npm'>
                         <ContainerHoverScale>
                             <S.SvgStyled
-                                animationdelay = '3s'
+                                animationDelay = '3s'
                                 preserveAspectRatio = 'xMidYMid'
                                 version = '1.1'
                                 viewBox = '0 0 256 256'
@@ -84,14 +84,12 @@ export const Header: FC = ({ ...props }) => {
                     </a>
                 </ContainerCenter>
             </S.ContainerLogos>
-            <div>
-                <ContainerCenter>
-                    <IconMenu
-                        isOpen = { togglesRedux.isOpenSidebar }
-                        onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
-                    />
-                </ContainerCenter>
-            </div>
+            <ContainerCenter>
+                <IconMenu
+                    isOpen = { togglesRedux.isOpenSidebar }
+                    onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
+                />
+            </ContainerCenter>
         </S.Container>
     );
 };

@@ -20,7 +20,10 @@ import { linkSidebar, TypeLinkSidebar } from '../../linkSidebar';
 // Styles
 import * as S from './styles';
 
-export const Nav: FC<any> = ({ ...props }) => {
+// Types
+interface PropTypes extends React.HTMLAttributes<HTMLMenuElement> {}
+
+export const Nav: FC<PropTypes> = ({ ...props }) => {
     const { refs } = useContext(ContextApp);
     const { setToggleAction } = useTogglesRedux();
     const { setLinkAnchorAction } = useLinkAnchorRedux();

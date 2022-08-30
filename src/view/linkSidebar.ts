@@ -41,4 +41,8 @@ export const linkSidebar: TypeLinkSidebar[] = [
         path: '/deploy',
         text: 'Deploy',
     },
+    {
+        path: '/feedback',
+        text: 'Feedback',
+    },
 ];

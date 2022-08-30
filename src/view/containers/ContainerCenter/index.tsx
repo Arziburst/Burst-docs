@@ -5,9 +5,7 @@ import React, { FC } from 'react';
 import * as S from './styles';
 
 // Types
-type PropTypes = {
-    children: React.ReactNode
-}
+interface PropTypes extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const ContainerCenter: FC<PropTypes> = ({ children }) => {
     return (

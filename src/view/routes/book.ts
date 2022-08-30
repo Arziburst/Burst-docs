@@ -4,4 +4,4 @@ export const REQUIREMENTS = '/requirements';
 export const OPTIONAL_VSCODE_EXTENSIONS = '/optional-vscode-extensions';
 export const DEPLOY = '/deploy';
 
-export const TEST = '/test';
+export const FEEDBACK = '/feedback';

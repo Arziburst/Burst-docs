@@ -32,6 +32,10 @@ export const Public: FC = () => {
                 path = { book.DEPLOY }
             />
             <Route
+                element = { <Pages.Feedback /> }
+                path = { book.FEEDBACK }
+            />
+            <Route
                 element = {
                     <Navigate
                         replace
