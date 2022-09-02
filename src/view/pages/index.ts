@@ -1,4 +1,4 @@
-// Re-export
+// MarkerGen Re-export
 import { Feedback } from './Feedback';
 import { Deploy } from './Deploy';
 import { OptionalVSCodeExtensions } from './OptionalVSCodeExtensions';
@@ -15,4 +15,3 @@ export default [
     Feedback,
     // MarkerGen arr
 ];
-

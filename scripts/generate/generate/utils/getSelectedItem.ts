@@ -2,14 +2,14 @@
 import enquirer from 'enquirer';
 
 // Types
-import { GenerateOptionsItem } from '../types';
+import { TypesGenerateOptionsItem } from '../types';
 
-export const getSelectedItem = async (options: GenerateOptionsItem[]): Promise<GenerateOptionsItem> => {
+export const getSelectedItem = async (options: TypesGenerateOptionsItem[]): Promise<TypesGenerateOptionsItem> => {
     const templateQuestions = {
         type:    'autocomplete',
         name:    'optionChoice',
         message: 'What do you want to generate?',
-        choices: options.map((configItem: GenerateOptionsItem) => configItem.name),
+        choices: options.map((configItem: TypesGenerateOptionsItem) => configItem.name),
         suggest(input: string, choices: string[]) {
             return choices.filter((choice: any) => {
                 return choice.message.toLowerCase().startsWith(input.toLowerCase());
@@ -19,7 +19,7 @@ export const getSelectedItem = async (options: GenerateOptionsItem[]): Promise<G
     const templateAnswers: { optionChoice: string } = await enquirer.prompt(templateQuestions);
 
     return options.find(
-        (item: GenerateOptionsItem) => item.name === templateAnswers.optionChoice,
-    ) as GenerateOptionsItem;
+        (item: TypesGenerateOptionsItem) => item.name === templateAnswers.optionChoice,
+    ) as TypesGenerateOptionsItem;
 };
 

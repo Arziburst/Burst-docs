@@ -6,10 +6,35 @@ import { resolve } from 'path';
 import { replaceWordCase } from './replaceWordCase';
 
 // Types
-import { GenerateOptionsItem, optionsGenerationRow } from '../types';
+import {
+    TypesGenerateOptionsItem,
+    TypesOptionsGenerationRow,
+    TypesDefineMarkerAndAddRow,
+} from '../types';
 
-export const addRowFiles = (selectedConfigItem: GenerateOptionsItem, selectedName: string) => {
-    selectedConfigItem.addRowFiles?.forEach((element: optionsGenerationRow) => {
+const defineMarkerAndAddRow = ({ element, dataRedFile, tabs }: TypesDefineMarkerAndAddRow) => {
+    const reg = new RegExp(element.marker, 'g');
+    let dataRedFileReplaced = dataRedFile;
+
+    if (typeof element.whereInsertRow === 'undefined'
+                || element.whereInsertRow === 'before marker') {
+        dataRedFileReplaced = dataRedFile.replace(reg, element.marker + ' ' + element.generationRow);
+    }
+    if (element.whereInsertRow === 'after marker') {
+        dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + ' ' + element.marker);
+    }
+    if (element.whereInsertRow === 'before line marker') {
+        dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + '\n' + tabs + element.marker);
+    }
+    if (element.whereInsertRow === 'after line marker') {
+        dataRedFileReplaced = dataRedFile.replace(reg, element.marker + '\n' + tabs + element.generationRow);
+    }
+
+    return dataRedFileReplaced;
+};
+
+export const addRowFiles = (selectedConfigItem: TypesGenerateOptionsItem, selectedName: string) => {
+    selectedConfigItem.addRowFiles?.forEach((element: TypesOptionsGenerationRow) => {
         const pathFile = resolve(
             replaceWordCase({
                 string:          selectedConfigItem.outputPath,
@@ -18,26 +43,25 @@ export const addRowFiles = (selectedConfigItem: GenerateOptionsItem, selectedNam
             }) + '/' + element.pathFromOutputPath,
         );
 
+        let tabs: string = '';
+
         const dataRedFile = fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
-        const reg = new RegExp(element.marker, 'g');
-        let dataRedFileReplaced = dataRedFile;
+        dataRedFile
+            .split(/\r?\n/)
+            .forEach((string: string) => {
+                if (string.includes(element.marker)) {
+                    const stringWithRemovedMarker: string = string.replace(element.marker, '');
 
-        // let numberSpaces: null | number = null;
+                    stringWithRemovedMarker.split('').forEach((str) => {
+                        if (str === ' ') {
+                            tabs === null ? tabs = ' ' : tabs += ' ';
+                        }
+                    });
+                }
+            });
 
-        if (typeof element.insertRowNextMarker === 'undefined'
-        || element.insertRowNextMarker === 'line before') {
-            dataRedFileReplaced = dataRedFile.replace(reg, element.marker + ' ' + element.generationRow);
-        }
-        if (element.insertRowNextMarker === 'line after') {
-            dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + ' ' + element.marker);
-        }
-        if (element.insertRowNextMarker === 'before') {
-            dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + '\n' + element.marker);
-        }
-        if (element.insertRowNextMarker === 'after') {
-            dataRedFileReplaced = dataRedFile.replace(reg, element.marker + '\n' + element.generationRow);
-        }
+        const dataRedFileReplaced = defineMarkerAndAddRow({ element, dataRedFile, tabs });
 
         const resultData = replaceWordCase({
             string:          dataRedFileReplaced,

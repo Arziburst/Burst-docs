@@ -9,11 +9,11 @@ import { replaceWordCase } from './utils/replaceWordCase';
 import { addRowFiles } from './utils/addRowFiles';
 
 // Types
-import { GenerateOptionsItem } from './types';
+import { TypesGenerateOptionsItem } from './types';
 
-export const generateTemplateFiles = async (options: GenerateOptionsItem[]): Promise<void> => {
+export const generateTemplateFiles = async (options: TypesGenerateOptionsItem[]): Promise<void> => {
     try {
-        const selectedConfigItem: GenerateOptionsItem = await getSelectedItem(options);
+        const selectedConfigItem: TypesGenerateOptionsItem = await getSelectedItem(options);
 
         const selectedName: string = await getSelectedName();
 

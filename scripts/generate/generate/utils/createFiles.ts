@@ -5,13 +5,13 @@ import fs from 'fs';
 import { Transform } from 'stream';
 
 // Types
-import { CreateFiles } from '../types';
+import { TypesCreateFiles } from '../types';
 
 // Utils
 import { replaceWordCase } from './replaceWordCase';
 
 export const createFiles = (
-    { fromFolderPath, toPath, selectedConfigItem, selectedName }: CreateFiles,
+    { fromFolderPath, toPath, selectedConfigItem, selectedName }: TypesCreateFiles,
 ) => {
     try {
         const copyDir = (src: string, dest: string, callback: Function) => {

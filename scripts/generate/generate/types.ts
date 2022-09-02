@@ -1,20 +1,20 @@
-export type optionsGenerationRow = {
+export type TypesOptionsGenerationRow = {
     pathFromOutputPath: string
     marker: string
-    insertRowNextMarker?: 'before' | 'after' | 'line after' | 'line before'
+    whereInsertRow?: 'before line marker' | 'after line marker' | 'after marker' | 'before marker'
     generationRow: string
 }
 
-export type GenerateOptionsItem = {
+export type TypesGenerateOptionsItem = {
     name:      string
     pathTemplate:       string
     stringReplacers:    string
     outputPath:         string
-    addRowFiles?: optionsGenerationRow[]
+    addRowFiles?: TypesOptionsGenerationRow[]
     onComplete?:        Function
 }
 
-export type CreateFiles = {
+export type TypesCreateFiles = {
     fromFolderPath: string
     toPath: string
     selectedConfigItem: {
@@ -30,4 +30,10 @@ export type TypesGetWordCase = {
     string: string
     stringReplacers: string
     selectedName: string
+}
+
+export type TypesDefineMarkerAndAddRow = {
+    element: TypesOptionsGenerationRow
+    dataRedFile: string
+    tabs: string
 }

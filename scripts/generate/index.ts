@@ -12,16 +12,16 @@ generateTemplateFiles([
         outputPath:      resolve(PROJECT_ROOT, './src/view/pages/__name__(pascalCase)'),
         addRowFiles:     [
             {
-                pathFromOutputPath:  '../index.ts',
-                marker:              '// Re-export',
-                insertRowNextMarker: 'after',
-                generationRow:       'import { __name__(pascalCase) } from \'./__name__(pascalCase)\';',
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen Re-export',
+                whereInsertRow:     'after line marker',
+                generationRow:      'import { __name__(pascalCase) } from \'./__name__(pascalCase)\';',
             },
             {
-                pathFromOutputPath:  '../index.ts',
-                marker:              '// MarkerGen arr',
-                insertRowNextMarker: 'before',
-                generationRow:       '__name__(pascalCase),',
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen arr',
+                whereInsertRow:     'before line marker',
+                generationRow:      '__name__(pascalCase),',
             },
         ],
         onComplete: () => {
@@ -35,14 +35,14 @@ generateTemplateFiles([
         outputPath:      resolve(PROJECT_ROOT, './src/view/components/__componentName__(pascalCase)'),
         addRowFiles:     [
             {
-                pathFromOutputPath:  '../index.ts',
-                marker:              '// Re-export',
-                insertRowNextMarker: 'after',
-                generationRow:       '__componentName__(pascalCase),',
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen Re-export',
+                whereInsertRow:     'after line marker',
+                generationRow:      'export * from \'./__componentName__(pascalCase)\';',
             },
         ],
         onComplete: () => {
-            console.log('MY generateTemplateFiles Function onComplete');
+            console.log('Created component !!!');
         },
     },
 ]);
