@@ -15,7 +15,6 @@ import { ItemNav, Details } from '../';
 import { ContextApp } from '../..';
 
 // Book
-// import { linkSidebar, TypeLinkSidebar } from '../../linkSidebar';
 import Pages from '../../pages';
 
 // Styles

@@ -13,6 +13,6 @@ export type TypesOption = {
     navLink: TypesNavLink
 }
 export type TypesPage = {
-    importLazy: any
+    ComponentLazy: any
     option: TypesOption
 }

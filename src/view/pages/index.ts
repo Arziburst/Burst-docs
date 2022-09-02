@@ -12,7 +12,7 @@ export default [
     Requirements,
     OptionalVSCodeExtensions,
     Deploy,
-Feedback,
-// MarkerGen arr
+    Feedback,
+    // MarkerGen arr
 ];
 
