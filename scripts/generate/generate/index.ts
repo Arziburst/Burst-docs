@@ -1,5 +1,5 @@
 // Core
-import colors from 'colors';
+import chalk from 'chalk';
 
 //Utils
 import { getSelectedItem } from './utils/getSelectedItem';
@@ -39,7 +39,7 @@ export const generateTemplateFiles = async (options: GenerateOptionsItem[]): Pro
             selectedConfigItem.onComplete();
         }
     } catch (error) {
-        console.log(colors.red('error generateTemplateFiles'));
+        console.log(chalk.red('error generateTemplateFiles'));
         console.log(error);
     }
 };

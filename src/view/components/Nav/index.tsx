@@ -14,7 +14,7 @@ import { ItemNav, Details } from '../';
 // Context
 import { ContextApp } from '../..';
 
-// Book
+// Pages
 import Pages from '../../pages';
 
 // Styles

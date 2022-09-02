@@ -1,5 +1,5 @@
 // Core
-import colors from 'colors';
+import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
 import { Transform } from 'stream';
@@ -46,7 +46,7 @@ export const createFiles = (
 
                                     fs.access(dest, (error) => {
                                         if (error) {
-                                            console.log(colors.red('error access copy file'));
+                                            console.log(chalk.red('error access copy file'));
                                             console.log(error);
                                             throw error;
                                         }
@@ -61,7 +61,7 @@ export const createFiles = (
                                             ),
                                             (error) => {
                                                 if (error) {
-                                                    console.log(colors.red('error rename file'));
+                                                    console.log(chalk.red('error rename file'));
                                                     console.log(error);
                                                     throw error;
                                                 }
@@ -88,11 +88,11 @@ export const createFiles = (
 
 
         copyDir(fromFolderPath, toPath, (error: any) => {
-            console.log(colors.red(error));
+            console.log(chalk.red(error));
             throw error;
         });
     } catch (error) {
         // return [ `Copy failed: ${error}` ];\
-        console.log(colors.red(`${error}`));
+        console.log(chalk.red(`${error}`));
     }
 };
