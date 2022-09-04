@@ -1,18 +1,20 @@
 export type TypesOptionsGenerationRow = {
     pathFromOutputPath: string
     marker: string
-    whereInsertRow?: 'before line marker' | 'after line marker' | 'after marker' | 'before marker'
+    whereInsertRow?: 'after marker' | 'before marker'
     generationRow: string
 }
 
 export type TypesGenerateOptionsItem = {
     name:      string
-    pathTemplate:       string
     stringReplacers:    string
+    pathTemplate:       string
     outputPath:         string
     addRowFiles?: TypesOptionsGenerationRow[]
     onComplete?:        Function
 }
+
+export type TypesGetSelectedName = string[]
 
 export type TypesCreateFiles = {
     fromFolderPath: string
@@ -23,15 +25,19 @@ export type TypesCreateFiles = {
         stringReplacers: string,
         outputPath: string
     }
-    selectedName: string
+    selectedName: TypesGetSelectedName
 };
 
-export type TypesGetWordCase = {
+export type TypesReplaceWordCase = {
     string: string
     stringReplacers: string
-    selectedName: string
+    selectedName: TypesGetSelectedName
 }
 
+export type TypesAddRowFiles = {
+    selectedConfigItem: TypesGenerateOptionsItem
+    selectedName: TypesGetSelectedName
+}
 export type TypesDefineMarkerAndAddRow = {
     element: TypesOptionsGenerationRow
     dataRedFile: string

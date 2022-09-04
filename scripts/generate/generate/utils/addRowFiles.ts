@@ -7,9 +7,9 @@ import { replaceWordCase } from './replaceWordCase';
 
 // Types
 import {
-    TypesGenerateOptionsItem,
     TypesOptionsGenerationRow,
     TypesDefineMarkerAndAddRow,
+    TypesAddRowFiles,
 } from '../types';
 
 const defineMarkerAndAddRow = ({ element, dataRedFile, tabs }: TypesDefineMarkerAndAddRow) => {
@@ -17,23 +17,17 @@ const defineMarkerAndAddRow = ({ element, dataRedFile, tabs }: TypesDefineMarker
     let dataRedFileReplaced = dataRedFile;
 
     if (typeof element.whereInsertRow === 'undefined'
-                || element.whereInsertRow === 'before marker') {
-        dataRedFileReplaced = dataRedFile.replace(reg, element.marker + ' ' + element.generationRow);
-    }
-    if (element.whereInsertRow === 'after marker') {
-        dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + ' ' + element.marker);
-    }
-    if (element.whereInsertRow === 'before line marker') {
-        dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + '\n' + tabs + element.marker);
-    }
-    if (element.whereInsertRow === 'after line marker') {
+                || element.whereInsertRow === 'after marker') {
         dataRedFileReplaced = dataRedFile.replace(reg, element.marker + '\n' + tabs + element.generationRow);
+    }
+    if (element.whereInsertRow === 'before marker') {
+        dataRedFileReplaced = dataRedFile.replace(reg, element.generationRow + '\n' + tabs + element.marker);
     }
 
     return dataRedFileReplaced;
 };
 
-export const addRowFiles = (selectedConfigItem: TypesGenerateOptionsItem, selectedName: string) => {
+export const addRowFiles = ({ selectedConfigItem, selectedName }: TypesAddRowFiles) => {
     selectedConfigItem.addRowFiles?.forEach((element: TypesOptionsGenerationRow) => {
         const pathFile = resolve(
             replaceWordCase({
@@ -43,7 +37,7 @@ export const addRowFiles = (selectedConfigItem: TypesGenerateOptionsItem, select
             }) + '/' + element.pathFromOutputPath,
         );
 
-        let tabs: string = '';
+        let tabs: TypesDefineMarkerAndAddRow['tabs'] = '';
 
         const dataRedFile = fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
@@ -51,12 +45,14 @@ export const addRowFiles = (selectedConfigItem: TypesGenerateOptionsItem, select
             .split(/\r?\n/)
             .forEach((string: string) => {
                 if (string.includes(element.marker)) {
-                    const stringWithRemovedMarker: string = string.replace(element.marker, '');
+                    string.split('').every((symbolOfLine) => {
+                        if (symbolOfLine === ' ') {
+                            tabs += ' ';
 
-                    stringWithRemovedMarker.split('').forEach((str) => {
-                        if (str === ' ') {
-                            tabs === null ? tabs = ' ' : tabs += ' ';
+                            return true;
                         }
+
+                        return false;
                     });
                 }
             });

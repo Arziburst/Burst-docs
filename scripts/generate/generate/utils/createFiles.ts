@@ -92,7 +92,6 @@ export const createFiles = (
             throw error;
         });
     } catch (error) {
-        // return [ `Copy failed: ${error}` ];\
         console.log(chalk.red(`${error}`));
     }
 };

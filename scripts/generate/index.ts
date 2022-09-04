@@ -1,48 +1,183 @@
 // Core
-import { path as PROJECT_ROOT } from 'app-root-path';
-import { resolve } from 'path';
-
+import chalk from 'chalk';
 import { generateTemplateFiles } from './generate';
+
+// Cases
+// lorem lorem =>
+// __name__(noCase) === lorem Lorem lorem
+// __name__(pascalCase) === LoremLorem
+// __name__(constantCase) === LOREM_LOREM
+// __name__(kebabCase) === lorem-lorem
+// __name__ === loremLorem
 
 generateTemplateFiles([
     {
-        pathTemplate:    resolve(PROJECT_ROOT, './scripts/generate/templates/page'),
-        name:            'Page: /pages/__name__',
-        stringReplacers: '__name__',
-        outputPath:      resolve(PROJECT_ROOT, './src/view/pages/__name__(pascalCase)'),
+        name:            'Bus: /bus/__entityName__',
+        stringReplacers: '__entityName__',
+        pathTemplate:    './scripts/generate/templates/busEntity',
+        outputPath:      './src/bus/__entityName__',
         addRowFiles:     [
             {
-                pathFromOutputPath: '../index.ts',
-                marker:             '// MarkerGen Re-export',
-                whereInsertRow:     'after line marker',
-                generationRow:      'import { __name__(pascalCase) } from \'./__name__(pascalCase)\';',
+                pathFromOutputPath: '../../init/redux/index.ts',
+                marker:             '// Reducers MarkerGen',
+                whereInsertRow:     'after marker',
+                generationRow:      'import __entityName__ from \'../../bus/__entityName__/slice\';',
             },
             {
-                pathFromOutputPath: '../index.ts',
-                marker:             '// MarkerGen arr',
-                whereInsertRow:     'before line marker',
-                generationRow:      '__name__(pascalCase),',
+                pathFromOutputPath: '../../init/redux/index.ts',
+                marker:             '// MarkerGen add reducer',
+                whereInsertRow:     'after marker',
+                generationRow:      '__entityName__,',
             },
         ],
         onComplete: () => {
-            console.log('Created page !!!');
+            console.log(chalk.green('Created bus entity !!!'));
+        },
+    },
+    {
+        name:            'Saga: /bus/__entityName__/saga',
+        stringReplacers: '__entityName__',
+        pathTemplate:    './scripts/generate/templates/saga',
+        outputPath:      './src/bus/__entityName__/saga',
+        addRowFiles:     [
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// Middleware MarkerGen',
+                whereInsertRow:     'after marker',
+                generationRow:      'import { use__entityName__(pascalCase)Saga } from \'./saga\'; /* Choose one technology, Saga or Thunk */',
+            },
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen api hook',
+                whereInsertRow:     'after marker',
+                generationRow:      'const { fetch__entityName__(pascalCase) } = use__entityName__(pascalCase)Saga();  /* Saga api hook */',
+            },
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen use api hook',
+                whereInsertRow:     'after marker',
+                generationRow:      '//     fetch__entityName__(pascalCase)();',
+            },
+            {
+                pathFromOutputPath: '../../../init/redux/rootSaga.ts',
+                marker:             '// Tools MarkerGen imports',
+                whereInsertRow:     'after marker',
+                generationRow:      'import { watch__entityName__(pascalCase) } from \'../../bus/__entityName__/saga\';',
+            },
+            {
+                pathFromOutputPath: '../../../init/redux/rootSaga.ts',
+                marker:             '// MarkerGen rootSaga',
+                whereInsertRow:     'after marker',
+                generationRow:      'watch__entityName__(pascalCase)(),',
+            },
+        ],
+        onComplete: () => {
+            console.log(chalk.green('Created saga !!!'));
+            console.log(chalk.yellow('You have to set up Saga (middleware) => src/init/middleware.ts'));
+        },
+    },
+    {
+        name:            'Thunk: /bus/__entityName__/thunk',
+        stringReplacers: '__entityName__',
+        pathTemplate:    './scripts/generate/templates/thunk',
+        outputPath:      './src/bus/__entityName__/thunk',
+        addRowFiles:     [
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// Middleware MarkerGen',
+                whereInsertRow:     'after marker',
+                generationRow:      'import { use__entityName__(pascalCase)Thunk } from \'./thunk\'; /* Choose one technology, Saga or Thunk */',
+            },
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen api hook',
+                whereInsertRow:     'after marker',
+                generationRow:      'const { fetch__entityName__(pascalCase) } = use__entityName__(pascalCase)Thunk();  /* Thunk api hook */',
+            },
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen use api hook',
+                whereInsertRow:     'after marker',
+                generationRow:      '//     fetch__entityName__(pascalCase)();',
+            },
+        ],
+        onComplete: () => {
+            console.log(chalk.green('Created thunk !!!'));
+            console.log(chalk.yellow('You have to set up Thunk (middleware) => src/init/middleware.ts'));
         },
     },
     {
         name:            'Component: /view/components/__componentName__',
-        pathTemplate:    resolve(PROJECT_ROOT, './scripts/generate/templates/component'),
         stringReplacers: '__componentName__',
-        outputPath:      resolve(PROJECT_ROOT, './src/view/components/__componentName__(pascalCase)'),
+        pathTemplate:    './scripts/generate/templates/component',
+        outputPath:      './src/view/components/__componentName__(pascalCase)',
         addRowFiles:     [
             {
                 pathFromOutputPath: '../index.ts',
                 marker:             '// MarkerGen Re-export',
-                whereInsertRow:     'after line marker',
+                whereInsertRow:     'after marker',
                 generationRow:      'export * from \'./__componentName__(pascalCase)\';',
             },
         ],
         onComplete: () => {
             console.log('Created component !!!');
+        },
+    },
+    {
+        name:            'Element: /view/elements/__elementName__',
+        stringReplacers: '__elementName__',
+        pathTemplate:    './scripts/generate/templates/element/',
+        outputPath:      './src/view/elements/',
+        addRowFiles:     [
+            {
+                pathFromOutputPath: './index.ts',
+                marker:             '// MarkerGen Re-export',
+                whereInsertRow:     'after marker',
+                generationRow:      'export * from \'./__elementName__(pascalCase)\';',
+            },
+        ],
+        onComplete: () => {
+            console.log(chalk.green('Created element !!!'));
+        },
+    },
+    {
+        name:            'Container: /view/containers/__containerName__',
+        stringReplacers: '__containerName__',
+        pathTemplate:    './scripts/generate/templates/container',
+        outputPath:      './src/view/containers/__containerName__(pascalCase)',
+        addRowFiles:     [
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen Re-export',
+                whereInsertRow:     'after marker',
+                generationRow:      'export * from \'./__containerName__(pascalCase)\';',
+            },
+        ],
+        onComplete: () => {
+            console.log(chalk.green('Created container !!!'));
+        },
+    },
+    {
+        name:            'Page: /view/pages/__pageName__',
+        stringReplacers: '__pageName__',
+        pathTemplate:    './scripts/generate/templates/page',
+        outputPath:      './src/view/pages/__pageName__(pascalCase)',
+        addRowFiles:     [
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen Re-export',
+                whereInsertRow:     'after marker',
+                generationRow:      'import { __pageName__(pascalCase) } from \'./__pageName__(pascalCase)\';',
+            },
+            {
+                pathFromOutputPath: '../index.ts',
+                marker:             '// MarkerGen arr',
+                whereInsertRow:     'before marker',
+                generationRow:      '__pageName__(pascalCase),',
+            },
+        ],
+        onComplete: () => {
+            console.log(chalk.green('Created page !!!'));
         },
     },
 ]);

@@ -1,5 +1,7 @@
 // Core
 import enquirer from 'enquirer';
+import { resolve } from 'path';
+import { path as PROJECT_ROOT } from 'app-root-path';
 
 // Types
 import { TypesGenerateOptionsItem } from '../types';
@@ -18,8 +20,14 @@ export const getSelectedItem = async (options: TypesGenerateOptionsItem[]): Prom
     };
     const templateAnswers: { optionChoice: string } = await enquirer.prompt(templateQuestions);
 
-    return options.find(
+    const foundOption = options.find(
         (item: TypesGenerateOptionsItem) => item.name === templateAnswers.optionChoice,
     ) as TypesGenerateOptionsItem;
+
+    return {
+        ...foundOption,
+        pathTemplate: resolve(PROJECT_ROOT, foundOption.pathTemplate),
+        outputPath:   resolve(PROJECT_ROOT, foundOption.outputPath),
+    } as TypesGenerateOptionsItem;
 };
 

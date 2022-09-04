@@ -1,7 +1,7 @@
 // Core
 import { configureStore } from '@reduxjs/toolkit';
 
-// Reducers
+// Reducers MarkerGen
 import toggles from '../../bus/client/toggles';
 import linkAnchor from '../../bus/client/linkAnchor';
 import authorsGitHub from '../../bus/authorsGitHub/slice';
@@ -14,6 +14,7 @@ import {
 
 export const store = configureStore({
     reducer: {
+        // MarkerGen add reducer
         toggles,
         linkAnchor,
         authorsGitHub,

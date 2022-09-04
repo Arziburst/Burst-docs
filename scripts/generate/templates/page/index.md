@@ -1,3 +1,3 @@
-# __name__(pascalCase)
+# __pageName__(pascalCase)
 
 ####index.md
