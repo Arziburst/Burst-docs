@@ -9,13 +9,13 @@ import { replaceWordCase } from './utils/replaceWordCase';
 import { addRowFiles } from './utils/addRowFiles';
 
 // Types
-import { TypesGenerateOptionsItem, TypesGetSelectedName } from './types';
+import * as types from './types';
 
-export const generateTemplateFiles = async (options: TypesGenerateOptionsItem[]): Promise<void> => {
+export const generateTemplateFiles = async (options: types.GenerateOptionsItem[]): Promise<void> => {
     try {
-        const selectedConfigItem: TypesGenerateOptionsItem = await getSelectedItem(options);
+        const selectedConfigItem: types.GenerateOptionsItem = await getSelectedItem(options);
 
-        const selectedName: TypesGetSelectedName = await getSelectedName();
+        const selectedName: types.GetSelectedName = await getSelectedName();
 
         createFiles({
             fromFolderPath: selectedConfigItem.pathTemplate,
@@ -43,4 +43,3 @@ export const generateTemplateFiles = async (options: TypesGenerateOptionsItem[])
         console.log(error);
     }
 };
-exports.generateTemplateFiles = generateTemplateFiles;

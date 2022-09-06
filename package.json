@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.4",
+        "lodash": "^4.17.21",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.34.2",
@@ -39,6 +40,7 @@
         "@soda/friendly-errors-webpack-plugin": "^1.8.1",
         "@squoosh/lib": "^0.4.0",
         "@types/app-root-path": "^1.2.4",
+        "@types/lodash": "^4.14.184",
         "@types/mini-css-extract-plugin": "^2.5.1",
         "@types/node": "^18.7.3",
         "@types/react": "^18.0.17",
