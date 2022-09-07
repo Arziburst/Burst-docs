@@ -48,6 +48,7 @@ export type GenerateFiles = {
     id: {
         pathFromOutputPath: string
         marker: string
+        generationRow: string
     },
     wasInsertRow: boolean
 }

@@ -34,11 +34,14 @@ const addConfigToFile = ({ optionsGenerateRow, fileNameConfig }: types.AddConfig
 
         const newData = data.map((el) => ({ ...el, wasInsertRow: optionsGenerateRow.onceInsertRow }));
 
-        if (!parsedData.some((el) => el.id.marker === optionsGenerateRow.marker)) {
+        if (!parsedData.some((el) => el.id.marker === optionsGenerateRow.marker
+        && el.id.pathFromOutputPath === optionsGenerateRow.pathFromOutputPath
+        && el.id.generationRow === optionsGenerateRow.generationRow)) {
             newData.push({
                 id: {
                     pathFromOutputPath: optionsGenerateRow.pathFromOutputPath,
                     marker:             optionsGenerateRow.marker,
+                    generationRow:      optionsGenerateRow.generationRow,
                 },
                 wasInsertRow: true,
             });
@@ -54,9 +57,9 @@ const checkIsOnceInsertRow = ({ optionsGenerateRow, fileNameConfig }: types.Chec
 
     const foundElement: types.GenerateFiles = parsedData.find(
         (el: types.GenerateFiles) => el.id.marker === optionsGenerateRow.marker
-        && el.id.pathFromOutputPath === optionsGenerateRow.pathFromOutputPath,
+        && el.id.pathFromOutputPath === optionsGenerateRow.pathFromOutputPath
+        && el.id.generationRow === optionsGenerateRow.generationRow,
     );
-
     if (typeof foundElement === 'object') {
         return foundElement.wasInsertRow;
     }
@@ -68,22 +71,23 @@ export const addRowFiles = ({ selectedConfigItem, selectedName }: types.AddRowFi
     const fileNameConfig = 'config.generate.files.json';
 
     if (
-        (!fs.existsSync(fileNameConfig)
-        && selectedConfigItem.addRowFiles
-        && selectedConfigItem.addRowFiles.find((el) => el.onceInsertRow === true))
-        || fs.readFileSync(fileNameConfig, { encoding: 'utf-8' }) === ''
+        (selectedConfigItem.addRowFiles
+        && selectedConfigItem.addRowFiles.find((el) => el.onceInsertRow === true)
+        && !fs.existsSync(fileNameConfig))
+        || (selectedConfigItem.addRowFiles
+        && selectedConfigItem.addRowFiles.find((el) => el.onceInsertRow === true)
+        && fs.readFileSync(fileNameConfig, { encoding: 'utf-8' }) === '')
     ) {
         fs.writeFileSync(fileNameConfig, JSON.stringify([]));
     }
 
     selectedConfigItem.addRowFiles?.forEach((optionsGenerateRow: types.OptionsGenerateRow) => {
-        if (checkIsOnceInsertRow({ optionsGenerateRow, fileNameConfig })) {
+        if (optionsGenerateRow.onceInsertRow && checkIsOnceInsertRow({ optionsGenerateRow, fileNameConfig })) {
             console.log(chalk.yellow('This row previously inserted !!!'));
             console.table(optionsGenerateRow);
 
             return;
         }
-
 
         const pathFile = resolve(
             replaceWordCase({

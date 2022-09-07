@@ -39,7 +39,7 @@ export const generateTemplateFiles = async (options: types.GenerateOptionsItem[]
             selectedConfigItem.onComplete();
         }
     } catch (error) {
-        console.log(chalk.red('error generateTemplateFiles'));
+        console.log(chalk.red('Error generate files'));
         console.log(error);
     }
 };

@@ -103,7 +103,6 @@ generateTemplateFiles([
         ],
         onComplete: () => {
             console.log(chalk.green('Created saga !!!'));
-            console.log(chalk.yellow('You have to set up Saga (middleware) => src/init/middleware.ts'));
         },
     },
     {
@@ -147,7 +146,6 @@ generateTemplateFiles([
         ],
         onComplete: () => {
             console.log(chalk.green('Created thunk !!!'));
-            console.log(chalk.yellow('You have to set up Thunk (middleware) => src/init/middleware.ts'));
         },
     },
     {
