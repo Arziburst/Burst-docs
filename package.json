@@ -1,20 +1,8 @@
 {
-    "name": "burst-template",
-    "version": "6.5.0",
-    "description": "Burst is the perfect template for react SPA's.",
-    "author": "arziburst@gmail.com",
-    "keywords": [
-        "create-react-app",
-        "template",
-        "webpack",
-        "typescript",
-        "react",
-        "redux"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Arziburst/Burst.git"
-    },
+    "name": "burst-docs",
+    "version": "0.1.0",
+    "author": "arziburst@gmail.com, belartale@gmail.com",
+    "private": true,
     "scripts": {
         "start": "cross-env-shell NODE_ENV=development ts-node -P \"./tsconfig.webpack.json\" \"./scripts/webpack/start\"",
         "build": "cross-env-shell NODE_ENV=production ts-node -P \"./tsconfig.webpack.json\" \"./scripts/webpack/build\"",

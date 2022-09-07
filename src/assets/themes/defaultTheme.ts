@@ -15,6 +15,9 @@ export const defaultTheme = {
             close: '#9da5ab',
         },
     },
+    search: {
+        // todo
+    },
     scrollbar: {
         primary: '#9da5ab',
         hover:   '#f6b5bc',

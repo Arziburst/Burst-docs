@@ -1,4 +1,5 @@
 // MarkerGen Re-export
+export * from './Search';
 export * from './ErrorBoundary';
 export * from './Header';
 export * from './SideBar';

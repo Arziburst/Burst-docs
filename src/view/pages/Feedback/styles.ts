@@ -2,18 +2,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+
+    @media (max-width: 992px) {
+        justify-content: center;
+    }
 `;
 export const ContainerContent = styled.div`
     width: 100%;
-    max-width: 500px;
-    
-    @media (min-width: 992px) {
-        max-width: 800px;
-    }
+    max-width: 800px;
 `;
 
 export const Title = styled.h2`
