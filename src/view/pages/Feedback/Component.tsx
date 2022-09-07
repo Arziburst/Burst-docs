@@ -19,7 +19,7 @@ import * as S from './styles';
 // Types
 import { AuthorGitHub } from '../../../bus/authorsGitHub/types';
 
-const Feedback: FC = () => {
+const Component: FC = () => {
     const { authorsGitHub } = useAuthorsGitHub();
 
     return (
@@ -47,6 +47,6 @@ const Feedback: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <Feedback />
+        <Component />
     </ErrorBoundary>
 );

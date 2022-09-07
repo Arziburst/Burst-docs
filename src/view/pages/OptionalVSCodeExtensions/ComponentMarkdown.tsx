@@ -7,7 +7,7 @@ import { ErrorBoundary, Markdown } from '../../components';
 // MD file
 import md from './index.md';
 
-const OptionalExtensions: FC = () => {
+const ComponentOptionalVSCodeExtensionsMarkdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const OptionalExtensions: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <OptionalExtensions />
+        <ComponentOptionalVSCodeExtensionsMarkdown />
     </ErrorBoundary>
 );

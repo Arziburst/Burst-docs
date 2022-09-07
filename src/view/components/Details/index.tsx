@@ -9,10 +9,10 @@ import { ItemNav } from '../';
 import * as S from './styles';
 
 // Types
-import { TypeLinkSidebar } from '../../linkSidebar';
+import { TypesPage } from '../../pages/types';
 
 type PropTypes = {
-    element: TypeLinkSidebar
+    element: TypesPage['option']
     onClickTitle: Function
     onClickSubtitle: Function
 }
@@ -28,7 +28,7 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
             { ...props }>
             <S.Title>
                 <S.Marker
-                    isActive = { element.path === pathname }
+                    isActive = { element.navLink.path === pathname }
                     isOpen = { isOpen }
                     wasOpen = { wasOpen }
                     onClick = { () => {
@@ -39,19 +39,19 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                 <ItemNav
                     define
                     onclick = { onClickTitle }
-                    to = { element.path }
+                    to = { element.navLink.path }
                     variant = 'h2'>
-                    {element.text}
+                    {element.navLink.textLink.text}
                 </ItemNav>
             </S.Title>
             {isOpen && (
                 <S.Body>
-                    {element.subtitles && element.subtitles.map(
+                    {element.navLink.subtitles && element.navLink.subtitles.map(
                         (el) => (
-                            <li key = { el.text }>
+                            <li key = { el.id }>
                                 <ItemNav
                                     onclick = { () => onClickSubtitle(el.text) }
-                                    to = { element.path }
+                                    to = { element.navLink.path }
                                     variant = 'h3'>
                                     {el.text}
                                 </ItemNav>
