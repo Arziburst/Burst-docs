@@ -16,7 +16,6 @@ export const ContainerContent = styled.div`
 
 export const Title = styled.h2`
     font-size: 36px;
-    text-align: center;
     ${({ theme }) => ({
         color:      theme.fontColor.primary,
         fontFamily: theme.fontFamily.primary,

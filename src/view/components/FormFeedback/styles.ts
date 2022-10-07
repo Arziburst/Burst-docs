@@ -79,7 +79,6 @@ export const Textarea = styled.textarea<PropTypesInputs>`
 `;
 export const Submit = styled.button`
     background-color: transparent;
-    padding: 0px;
     margin: 0px;
     border: none;
     cursor: pointer;
@@ -101,7 +100,7 @@ export const Submit = styled.button`
         color: ${({ theme }) => theme.button.primary.fontColor.click};
     }
     
-    @media (min-width: 550px) {
+    @media (min-width: 500px) {
         width: auto;
         padding: 15px 100px;
     }

@@ -19,7 +19,7 @@ import { InputFeedback } from '../../../bus/inputFeedback/types';
 
 
 export const FormFeedback: FC = () => {
-    const { inputFeedback, setInputsFeedback, resetInputsFeedback } = useInputFeedback();
+    const { setInputsFeedback, resetInputsFeedback } = useInputFeedback();
     const { register, handleSubmit, watch, getValues, reset, formState: { errors }} = useForm<InputFeedback>({
         mode: 'onSubmit',
     });

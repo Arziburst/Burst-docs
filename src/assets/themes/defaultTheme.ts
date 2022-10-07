@@ -48,7 +48,7 @@ export const defaultTheme = {
             },
             fontColor: {
                 primary: '#000',
-                hover:   '#8d8d8d',
+                hover:   '#000000',
                 click:   '#ffffff',
             },
         },
