@@ -1,4 +1,4 @@
-// MarkerGen Re-export
+// MarkerGen import
 import { Feedback } from './Feedback';
 import { Deploy } from './Deploy';
 import { OptionalVSCodeExtensions } from './OptionalVSCodeExtensions';
@@ -13,5 +13,5 @@ export default [
     OptionalVSCodeExtensions,
     Deploy,
     Feedback,
-    // MarkerGen arr
+    // MarkerGen use page
 ];
