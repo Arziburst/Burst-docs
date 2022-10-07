@@ -9,18 +9,22 @@ import { useTogglesRedux } from '../../../bus/client/toggles';
 import { ContainerScrollbar } from '../../containers';
 
 // Components
-import { ItemNav, Details } from '../';
+import { ItemNav, Details, Search } from '../';
 
 // Context
 import { ContextApp } from '../..';
 
-// Book
-import { linkSidebar, TypeLinkSidebar } from '../../linkSidebar';
+// Pages
+import Pages from '../../pages';
 
 // Styles
 import * as S from './styles';
 
-export const Nav: FC<any> = ({ ...props }) => {
+// Types
+import { TypesPage } from '../../pages/types';
+interface PropTypes extends React.HTMLAttributes<HTMLMenuElement> {}
+
+export const Nav: FC<PropTypes> = ({ ...props }) => {
     const { refs } = useContext(ContextApp);
     const { setToggleAction } = useTogglesRedux();
     const { setLinkAnchorAction } = useLinkAnchorRedux();
@@ -31,7 +35,7 @@ export const Nav: FC<any> = ({ ...props }) => {
             setToggleAction({ type: 'isOpenSidebar', value: false });
         }
     };
-    const onClickSubtitle = (text:  TypeLinkSidebar['text']) => {
+    const onClickSubtitle = (text:  string) => {
         if (refs) {
             refs.current = [];
             const re = new RegExp(' ', 'g');
@@ -41,31 +45,35 @@ export const Nav: FC<any> = ({ ...props }) => {
         }
     };
 
+
     return (
         <S.Container
             { ...props }>
             <ContainerScrollbar style = {{ height: '100%', boxShadow: '0px 4px 0.5rem #9da5ab' }}>
                 <S.Ul>
+                    {/* <li>
+                        <Search />
+                    </li> */}
                     {
-                        linkSidebar.map((element) => {
-                            if (!element.subtitles) {
+                        Pages.map((element: TypesPage) => {
+                            if (!element.option.navLink.subtitles) {
                                 return (
-                                    <li key = { element.path }>
+                                    <li key = { element.option.navLink.path }>
                                         <ItemNav
                                             define
                                             onclick = { onClickTitle }
-                                            to = { element.path }
+                                            to = { element.option.navLink.path }
                                             variant = 'h2'>
-                                            {element.text}
+                                            {element.option.navLink.textLink.text}
                                         </ItemNav>
                                     </li>
                                 );
                             }
 
                             return (
-                                <li key = { element.text }>
+                                <li key = { element.option.navLink.path }>
                                     <Details
-                                        element = { element }
+                                        element = { element.option }
                                         onClickSubtitle = { onClickSubtitle }
                                         onClickTitle = { onClickTitle }
                                     />

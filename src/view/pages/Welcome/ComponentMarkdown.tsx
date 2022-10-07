@@ -7,7 +7,7 @@ import { ErrorBoundary, Markdown } from '../../components';
 // MD file
 import md from './index.md';
 
-const HowToInstall: FC = () => {
+const ComponentWelcomeMarkdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const HowToInstall: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <HowToInstall />
+        <ComponentWelcomeMarkdown />
     </ErrorBoundary>
 );

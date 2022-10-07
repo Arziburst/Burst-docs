@@ -7,7 +7,7 @@ import { ErrorBoundary, Markdown } from '../../components';
 // MD file
 import md from './index.md';
 
-const Requirements: FC = () => {
+const ComponentHowToInstallMarkdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const Requirements: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <Requirements />
+        <ComponentHowToInstallMarkdown />
     </ErrorBoundary>
 );

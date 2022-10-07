@@ -5,31 +5,57 @@ export const defaultTheme = {
         close: 'red',
     },
     sidebar: {
-        detailsColor: {
-            active: '#f7808d',
-            close:  '#9da5ab',
-            hover:  '#f6b5bc',
-            click:  '#da717d',
-        },
         fontColor: {
             primary: '#000',
-            active:  '#f7808d',
-            hover:   '#f6b5bc',
+
+            hover:  '#f6b5bc',
+            active: '#f7808d',
+            click:  '#da717d',
+
+            close: '#9da5ab',
         },
+    },
+    search: {
+        // todo
     },
     scrollbar: {
         primary: '#9da5ab',
         hover:   '#f6b5bc',
     },
-    iconMenu: {
-        primary: '#000000',
-        hover:   '#5a5a5a',
-        click:   '#777777',
+    spinner: {
+        color: {
+            primary: '#f7808d',
+        },
     },
+    input: {
+        primary: {
+            borderColor: {
+                primary: 'grey',
+                hover:   'black',
+            },
+            fontColor: {
+                error: 'red',
+            },
+            error: 'red',
+        },
+    },
+    button: {
+        primary: {
+            backgroundColor: {
+                primary: '#e6e6e6',
+                hover:   '#f6b5bc',
+                click:   '#da717d',
+            },
+            fontColor: {
+                primary: '#000',
+                hover:   '#000000',
+                click:   '#ffffff',
+            },
+        },
+    },
+    darkArea:  'rgba(0,0,0,0.4)',
     fontColor: {
         primary: '#000',
-        active:  '#f7808d',
-        hover:   '#f6b5bc',
     },
     fontFamily: {
         primary: 'sans-serif',

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // Types
 type PropTypes = {
-    animationdelay: string
+    animationDelay: string
 }
 
 const gap = '16px';
@@ -52,13 +52,13 @@ export const ContainerLogo = styled.div`
 
 export const ImageStyled = styled.img<PropTypes>`
     ${AnimationBox}
-    animation-delay: ${({ animationdelay }) => animationdelay};
+    animation-delay: ${({ animationDelay }) => animationDelay};
     height: 50px;
 `;
 
 export const SvgStyled = styled.svg<PropTypes>`
     ${AnimationBox}
-    animation-delay: ${({ animationdelay }) => animationdelay};
+    animation-delay: ${({ animationDelay }) => animationDelay};
     display: flex;
     height: 30px;
 `;

@@ -7,7 +7,7 @@ import { ErrorBoundary, Markdown } from '../../components';
 // MD file
 import md from './index.md';
 
-const Deploy: FC = () => {
+const Component__pageName__(pascalCase)Markdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const Deploy: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <Deploy />
+        <Component__pageName__(pascalCase)Markdown />
     </ErrorBoundary>
 );

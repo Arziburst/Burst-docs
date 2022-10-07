@@ -28,7 +28,7 @@ export const ContainerNav = styled.div`
 `;
 
 export const DarkArea = styled.div`
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: ${({ theme }) => theme.darkArea};
         height:          100%;
         width:           100%;
         position:        absolute;
@@ -38,6 +38,7 @@ export const DarkArea = styled.div`
 `;
 
 export const ContainerMain = styled.main`
+    height: 100%;
     padding: 20px;
 
     @media (min-width: 576px) {
