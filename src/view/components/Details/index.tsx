@@ -9,7 +9,7 @@ import { ItemNav } from '../';
 import * as S from './styles';
 
 // Types
-import { TypesPage } from '../../pages/types';
+import { TypesPage } from '../../pages/Docs/types';
 
 type PropTypes = {
     element: TypesPage['option']

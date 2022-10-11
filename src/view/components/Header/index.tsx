@@ -1,8 +1,15 @@
 // Core
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Assets
 import burstLogo from '../../../assets/images/burst-logo.png';
+
+// Data
+import { DocumentationPages } from '../../pages/Docs/dataDocs';
+
+// Constants
+import { DOCS } from '../../../init';
 
 // Bus
 import { useTogglesRedux } from '../../../bus/client/toggles';
@@ -11,13 +18,32 @@ import { useTogglesRedux } from '../../../bus/client/toggles';
 import { ContainerCenter, ContainerHoverScale } from '../../containers';
 
 // Elements
-import { IconMenu, Link } from '../../elements';
+import { Button, IconMenu, Link } from '../../elements';
 
 // Styles
 import * as S from './styles';
 
 export const Header: FC = ({ ...props }) => {
+    const [ isDocs, setIsDocs ] = useState(false);
     const { togglesRedux, setToggleAction } = useTogglesRedux();
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        const splittedPathname = pathname.split('/');
+
+        const re = new RegExp(`^${DOCS}$`);
+
+        if (splittedPathname.some((str) => re.test(str))) {
+            setIsDocs(true);
+        } else {
+            setIsDocs(false);
+        }
+
+        return () => {
+            setIsDocs(false);
+        };
+    }, [ pathname ]);
 
     return (
         <S.Container { ...props }>
@@ -85,10 +111,20 @@ export const Header: FC = ({ ...props }) => {
                 </ContainerCenter>
             </S.ContainerLogos>
             <ContainerCenter>
-                <IconMenu
-                    isOpen = { togglesRedux.isOpenSidebar }
-                    onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
-                />
+                {isDocs === true && (
+                    <IconMenu
+                        isOpen = { togglesRedux.isOpenSidebar }
+                        onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
+                    />
+                ) }
+
+                {isDocs === false && (
+                    <Button
+                        variant = 'primary'
+                        onClick = { () => navigate(`${DocumentationPages[ 0 ].option.navLink.path}`) }>
+                        Documentation
+                    </Button>
+                )}
             </ContainerCenter>
         </S.Container>
     );

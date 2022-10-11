@@ -1,18 +1,10 @@
 // Core
 import React, { FC } from 'react';
 
-// Bus
-// import {} from '../../../bus/'
-
 // Styles
 import * as S from './styles';
 
-// Types
-type PropTypes = {
-    /* type props here */
-}
-
-export const Search: FC<PropTypes> = () => {
+export const Search: FC = () => {
     return (
         <S.Container>
             <S.Input type = 'text' />

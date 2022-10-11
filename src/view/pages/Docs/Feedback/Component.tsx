@@ -2,22 +2,22 @@
 import React, { FC } from 'react';
 
 // Bus
-import { useAuthorsGitHub } from '../../../bus/authorsGitHub';
+import { useAuthorsGitHub } from '../../../../bus/authorsGitHub';
 
 // Containers
-import { ContainerHoverScale } from '../../containers';
+import { ContainerHoverScale } from '../../../containers';
 
 // Components
-import { ErrorBoundary, FormFeedback } from '../../components';
+import { ErrorBoundary, FormFeedback } from '../../../components';
 
 // Elements
-import { ImgAuthor } from '../../elements';
+import { ImgAuthor } from '../../../elements';
 
 // Styles
 import * as S from './styles';
 
 // Types
-import { AuthorGitHub } from '../../../bus/authorsGitHub/types';
+import { AuthorGitHub } from '../../../../bus/authorsGitHub/types';
 
 const Component: FC = () => {
     const { authorsGitHub } = useAuthorsGitHub();

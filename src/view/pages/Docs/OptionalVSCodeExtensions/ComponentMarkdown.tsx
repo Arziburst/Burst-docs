@@ -2,12 +2,12 @@
 import React, { FC } from 'react';
 
 // Components
-import { ErrorBoundary, Markdown } from '../../components';
+import { ErrorBoundary, Markdown } from '../../../components';
 
 // MD file
 import md from './index.md';
 
-const ComponentWelcomeMarkdown: FC = () => {
+const ComponentOptionalVSCodeExtensionsMarkdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const ComponentWelcomeMarkdown: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <ComponentWelcomeMarkdown />
+        <ComponentOptionalVSCodeExtensionsMarkdown />
     </ErrorBoundary>
 );

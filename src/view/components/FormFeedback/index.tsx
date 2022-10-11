@@ -79,7 +79,7 @@ export const FormFeedback: FC = () => {
                 {errors.feedback && <S.ErrorTextForInput>{errors.feedback.message}</S.ErrorTextForInput>}
             </div>
             <ContainerCenter>
-                <S.Submit type = 'submit'>Send</S.Submit>
+                <S.Submit variant = 'primary'>Send</S.Submit>
             </ContainerCenter>
         </S.Form>
     );

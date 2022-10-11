@@ -62,3 +62,4 @@ export const SvgStyled = styled.svg<PropTypes>`
     display: flex;
     height: 30px;
 `;
+
