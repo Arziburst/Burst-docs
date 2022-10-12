@@ -2,10 +2,10 @@
 import { TypesOption } from '../types';
 
 export const option__pageName__(pascalCase): TypesOption = {
-    rootRoutePath: '/__pageName__',
+    rootRoutePath: '/__pageName__(kebabCase)',
 
     navLink: {
-        path:     '/__pageName__',
+        path:     '/__pageName__(kebabCase)',
         textLink: {
             id:   '__pageName__(kebabCase)',
             text: '__pageName__(pascalCase)',

@@ -8,13 +8,21 @@ type PropTypes = {
 
 const gap = '16px';
 
-export const Container = styled.header`
+export const ContainerHeader = styled.header`
     z-index: 100;
     padding: 8px 16px;
     box-shadow: 0 0 2.25rem #9da5ab;
+    background-color: ${({ theme }) => theme.app.primary};
+`;
+export const ContainerContent = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
+    
+    @media (min-width: 380px) {
+        justify-content: space-between;
+    }
 `;
 export const ContainerLogos = styled.div`
     display: flex;
@@ -25,7 +33,6 @@ export const IconMenu = styled.div`
     display: flex;
     gap: ${gap};
 `;
-
 
 const AnimationBox = `
     @keyframes animationBox {
@@ -62,3 +69,4 @@ export const SvgStyled = styled.svg<PropTypes>`
     display: flex;
     height: 30px;
 `;
+

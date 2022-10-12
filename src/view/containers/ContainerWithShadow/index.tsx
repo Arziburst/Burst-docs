@@ -12,7 +12,7 @@ interface PropTypes extends React.HTMLAttributes<HTMLDivElement> {
     /* type props here */
 }
 
-export const __containerName__(pascalCase): FC<PropTypes> = ({ children, ...props }) => {
+export const ContainerWithShadow: FC<PropTypes> = ({ children, ...props }) => {
     return (
         <S.Container { ...props }>
             {children}

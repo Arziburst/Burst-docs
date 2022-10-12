@@ -1,6 +1,9 @@
 // Core
 import styled from 'styled-components';
 
+// Elements
+import { Button } from '../../elements';
+
 interface PropTypesInputs extends React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
     error: boolean
 }
@@ -77,28 +80,9 @@ export const Textarea = styled.textarea<PropTypesInputs>`
         height: 150px;
     }
 `;
-export const Submit = styled.button`
-    background-color: transparent;
-    margin: 0px;
-    border: none;
-    cursor: pointer;
-    
-    background-color: ${({ theme }) => theme.button.primary.backgroundColor.primary};
-    border-radius: 5px;
-    padding: 15px 0px;
+export const Submit = styled(Button)`
     width: 100%;
     font-size: 20px;
-    font-family: ${({ theme }) => theme.fontFamily.primary};
-    color: ${({ theme }) => theme.button.primary.fontColor.primary};
-    
-    &:hover, &:focus {
-        background-color: ${({ theme }) => theme.button.primary.backgroundColor.hover};
-        color: ${({ theme }) => theme.button.primary.fontColor.hover};
-    }
-    &:active {
-        background-color: ${({ theme }) => theme.button.primary.backgroundColor.click};
-        color: ${({ theme }) => theme.button.primary.fontColor.click};
-    }
     
     @media (min-width: 500px) {
         width: auto;

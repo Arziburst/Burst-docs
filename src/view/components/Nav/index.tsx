@@ -9,19 +9,19 @@ import { useTogglesRedux } from '../../../bus/client/toggles';
 import { ContainerScrollbar } from '../../containers';
 
 // Components
-import { ItemNav, Details, Search } from '../';
+import { ItemNav, Details } from '../';
 
 // Context
 import { ContextApp } from '../..';
 
 // Pages
-import Pages from '../../pages';
+import { DocumentationPages } from '../../pages/Docs/dataDocs';
 
 // Styles
 import * as S from './styles';
 
 // Types
-import { TypesPage } from '../../pages/types';
+import { TypesPage } from '../../pages/Docs/types';
 interface PropTypes extends React.HTMLAttributes<HTMLMenuElement> {}
 
 export const Nav: FC<PropTypes> = ({ ...props }) => {
@@ -55,7 +55,7 @@ export const Nav: FC<PropTypes> = ({ ...props }) => {
                         <Search />
                     </li> */}
                     {
-                        Pages.map((element: TypesPage) => {
+                        DocumentationPages.map((element: TypesPage) => {
                             if (!element.option.navLink.subtitles) {
                                 return (
                                     <li key = { element.option.navLink.path }>

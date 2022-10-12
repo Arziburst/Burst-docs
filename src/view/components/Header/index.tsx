@@ -1,26 +1,55 @@
 // Core
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Assets
 import burstLogo from '../../../assets/images/burst-logo.png';
+
+// Data
+import { DocumentationPages } from '../../pages/Docs/dataDocs';
+
+// Constants
+import { DOCS } from '../../../init';
 
 // Bus
 import { useTogglesRedux } from '../../../bus/client/toggles';
 
 // Container
-import { ContainerCenter, ContainerHoverScale } from '../../containers';
+import { ContainerCenter, ContainerHoverScale, Wrapper } from '../../containers';
 
 // Elements
-import { IconMenu, Link } from '../../elements';
+import { Button, IconMenu, Link } from '../../elements';
 
 // Styles
 import * as S from './styles';
 
-export const Header: FC = ({ ...props }) => {
-    const { togglesRedux, setToggleAction } = useTogglesRedux();
+// Types
+interface PropTypes extends React.HTMLAttributes<HTMLDivElement>  {}
 
-    return (
-        <S.Container { ...props }>
+export const Header: FC<PropTypes> = ({ ...props }) => {
+    const [ isDocs, setIsDocs ] = useState(false);
+    const { togglesRedux, setToggleAction } = useTogglesRedux();
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const splittedPathname = pathname.split('/');
+
+        const re = new RegExp(`^${DOCS}$`);
+
+        if (splittedPathname.some((str) => re.test(str))) {
+            setIsDocs(true);
+        } else {
+            setIsDocs(false);
+        }
+
+        return () => {
+            setIsDocs(false);
+        };
+    }, [ pathname ]);
+
+    const content = () => (
+        <S.ContainerContent>
             <S.ContainerLogos>
                 <ContainerCenter>
                     <S.ContainerLogo>
@@ -85,11 +114,39 @@ export const Header: FC = ({ ...props }) => {
                 </ContainerCenter>
             </S.ContainerLogos>
             <ContainerCenter>
-                <IconMenu
-                    isOpen = { togglesRedux.isOpenSidebar }
-                    onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
-                />
+                {isDocs === true && (
+                    <IconMenu
+                        isOpen = { togglesRedux.isOpenSidebar }
+                        onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
+                    />
+                ) }
+
+                {isDocs === false && (
+                    <Button
+                        variant = 'primary'
+                        onClick = { () => navigate(`${DocumentationPages[ 0 ].option.navLink.path}`) }>
+                        Documentation
+                    </Button>
+                )}
             </ContainerCenter>
-        </S.Container>
+        </S.ContainerContent>
+    );
+
+    if (isDocs === false) {
+        return (
+            <S.ContainerHeader
+                style = {{ paddingLeft: 0, paddingRight: 0 }}
+                { ...props }>
+                <Wrapper>
+                    {content()}
+                </Wrapper>
+            </S.ContainerHeader>
+        );
+    }
+
+    return (
+        <S.ContainerHeader { ...props }>
+            {content()}
+        </S.ContainerHeader>
     );
 };

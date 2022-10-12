@@ -6,7 +6,7 @@ import { Requirements } from './Requirements';
 import { HowToInstall } from './HowToInstall';
 import { Welcome } from './Welcome';
 
-export default [
+export const DocumentationPages = [
     Welcome,
     HowToInstall,
     Requirements,

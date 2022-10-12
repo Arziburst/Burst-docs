@@ -1,9 +1,6 @@
 // Core
 import React, { FC } from 'react';
 
-// Bus
-// import {} from '../../../bus/'
-
 // Styles
 import * as S from './styles';
 
@@ -12,7 +9,7 @@ interface PropTypes extends React.HTMLAttributes<HTMLDivElement> {
     /* type props here */
 }
 
-export const __containerName__(pascalCase): FC<PropTypes> = ({ children, ...props }) => {
+export const Wrapper: FC<PropTypes> = ({ children, ...props }) => {
     return (
         <S.Container { ...props }>
             {children}

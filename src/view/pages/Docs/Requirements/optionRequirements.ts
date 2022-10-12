@@ -1,11 +1,14 @@
+// Constants
+import { DOCS } from '../../../../init';
+
 // Types
 import { TypesOption } from '../types';
 
 export const optionRequirements: TypesOption = {
-    rootRoutePath: '/Requirements',
+    rootRoutePath: '/requirements',
 
     navLink: {
-        path:     '/Requirements',
+        path:     `/${DOCS}/requirements`,
         textLink: {
             id:   'requirements',
             text: 'Requirements',

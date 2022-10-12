@@ -2,12 +2,12 @@
 import React, { FC } from 'react';
 
 // Components
-import { ErrorBoundary, Markdown } from '../../components';
+import { ErrorBoundary, Markdown } from '../../../components';
 
 // MD file
 import md from './index.md';
 
-const ComponentHowToInstallMarkdown: FC = () => {
+const ComponentDeployMarkdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const ComponentHowToInstallMarkdown: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <ComponentHowToInstallMarkdown />
+        <ComponentDeployMarkdown />
     </ErrorBoundary>
 );
