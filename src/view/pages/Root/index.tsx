@@ -4,9 +4,22 @@ import React, { FC } from 'react';
 // Components
 import { ErrorBoundary } from '../../components';
 
+// Styles
+import * as S from './styles';
+
 const Root: FC = () => {
     return (
-        <h1>Root</h1>
+        <S.Container>
+            <S.ContainerWithShadowStyled>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+            </S.ContainerWithShadowStyled>
+        </S.Container>
     );
 };
 

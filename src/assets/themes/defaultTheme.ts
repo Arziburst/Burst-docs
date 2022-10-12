@@ -1,5 +1,9 @@
 export const defaultTheme = {
-    name:       'defaultTheme',
+    name: 'defaultTheme',
+    app:  {
+        primary:   '#ffffff',
+        secondary: '#eeeeee',
+    },
     burgerMenu: {
         open:  'black',
         close: 'red',

@@ -1,5 +1,5 @@
 // Core
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Assets
@@ -15,7 +15,7 @@ import { DOCS } from '../../../init';
 import { useTogglesRedux } from '../../../bus/client/toggles';
 
 // Container
-import { ContainerCenter, ContainerHoverScale } from '../../containers';
+import { ContainerCenter, ContainerHoverScale, Wrapper } from '../../containers';
 
 // Elements
 import { Button, IconMenu, Link } from '../../elements';
@@ -23,13 +23,16 @@ import { Button, IconMenu, Link } from '../../elements';
 // Styles
 import * as S from './styles';
 
-export const Header: FC = ({ ...props }) => {
+// Types
+interface PropTypes extends React.HTMLAttributes<HTMLDivElement>  {}
+
+export const Header: FC<PropTypes> = ({ ...props }) => {
     const [ isDocs, setIsDocs ] = useState(false);
     const { togglesRedux, setToggleAction } = useTogglesRedux();
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    React.useEffect(() => {
+    useEffect(() => {
         const splittedPathname = pathname.split('/');
 
         const re = new RegExp(`^${DOCS}$`);
@@ -45,8 +48,8 @@ export const Header: FC = ({ ...props }) => {
         };
     }, [ pathname ]);
 
-    return (
-        <S.Container { ...props }>
+    const content = () => (
+        <S.ContainerContent>
             <S.ContainerLogos>
                 <ContainerCenter>
                     <S.ContainerLogo>
@@ -126,6 +129,24 @@ export const Header: FC = ({ ...props }) => {
                     </Button>
                 )}
             </ContainerCenter>
-        </S.Container>
+        </S.ContainerContent>
+    );
+
+    if (isDocs === false) {
+        return (
+            <S.ContainerHeader
+                style = {{ paddingLeft: 0, paddingRight: 0 }}
+                { ...props }>
+                <Wrapper>
+                    {content()}
+                </Wrapper>
+            </S.ContainerHeader>
+        );
+    }
+
+    return (
+        <S.ContainerHeader { ...props }>
+            {content()}
+        </S.ContainerHeader>
     );
 };
