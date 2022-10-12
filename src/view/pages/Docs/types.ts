@@ -1,5 +1,5 @@
 // Types
-type TypesTextLinkSidebar = {
+export type TypesTextLinkSidebar = {
     id: string
     text: string
 }

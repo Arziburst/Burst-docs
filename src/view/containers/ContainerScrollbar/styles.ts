@@ -16,7 +16,7 @@ export const Container = styled.div`
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: ${({ theme }) => theme.scrollbar.primary}; 
-        border-radius: 5px;
+        border-radius: ${({ theme }) => theme.app.borderRadius.primary};
     }
 
     /* Handle on hover */

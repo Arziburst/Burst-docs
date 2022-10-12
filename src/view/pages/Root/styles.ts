@@ -14,5 +14,5 @@ export const ContainerWithShadowStyled = styled(ContainerWithShadow)<TypesContai
     margin-top: 20px;
     padding: 40px;
     width: 100%;
-    background-color: ${({ theme }) => theme.app.primary};
+    background-color: ${({ theme }) => theme.app.color.primary};
 `;

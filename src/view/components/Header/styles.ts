@@ -12,7 +12,7 @@ export const ContainerHeader = styled.header`
     z-index: 100;
     padding: 8px 16px;
     box-shadow: 0 0 2.25rem #9da5ab;
-    background-color: ${({ theme }) => theme.app.primary};
+    background-color: ${({ theme }) => theme.app.color.primary};
 `;
 export const ContainerContent = styled.div`
     display: flex;

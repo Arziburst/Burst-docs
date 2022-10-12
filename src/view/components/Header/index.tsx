@@ -14,6 +14,9 @@ import { DOCS } from '../../../init';
 // Bus
 import { useTogglesRedux } from '../../../bus/client/toggles';
 
+// Components
+import { Search } from '../Search';
+
 // Container
 import { ContainerCenter, ContainerHoverScale, Wrapper } from '../../containers';
 
@@ -113,24 +116,29 @@ export const Header: FC<PropTypes> = ({ ...props }) => {
                     </a>
                 </ContainerCenter>
             </S.ContainerLogos>
-            <ContainerCenter>
-                {isDocs === true && (
+
+            {isDocs === true && (
+                <ContainerCenter style = {{ height: '100%' }}>
+                    <Search />
                     <IconMenu
                         isOpen = { togglesRedux.isOpenSidebar }
                         onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
                     />
-                ) }
+                </ContainerCenter>
+            ) }
 
-                {isDocs === false && (
+            {isDocs === false && (
+                <ContainerCenter>
                     <Button
                         variant = 'primary'
                         onClick = { () => navigate(`${DocumentationPages[ 0 ].option.navLink.path}`) }>
                         Documentation
                     </Button>
-                )}
-            </ContainerCenter>
+                </ContainerCenter>
+            )}
         </S.ContainerContent>
     );
+
 
     if (isDocs === false) {
         return (

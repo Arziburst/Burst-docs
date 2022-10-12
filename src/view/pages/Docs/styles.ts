@@ -7,7 +7,7 @@ interface TypesContainer extends React.HTMLAttributes<HTMLDivElement> {}
 export const Container = styled.div<TypesContainer>`
     display: grid;
     grid-template-rows: calc(100vh - 69px);
-    background-color: ${({ theme }) => theme.app.primary};
+    background-color: ${({ theme }) => theme.app.color.primary};
     
     @media (min-width: 992px) {
         grid-template-columns: 300px 1fr;
