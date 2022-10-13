@@ -102,7 +102,7 @@ export const Search: FC = () => {
                 inputProps = {{
                     placeholder: 'Search',
                     value:       inputSearchRedux,
-                    onChange:    (_, { newValue, method }) => {
+                    onChange:    (_, { newValue }) => {
                         setInputSearch(newValue);
                     },
                 }}
@@ -124,7 +124,7 @@ export const Search: FC = () => {
                 } }
                 suggestions = { suggestions }
                 onSuggestionSelected = { (event,
-                    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+                    { suggestion }) => {
                     onClickSuggestion(suggestion);
                 } }
                 onSuggestionsClearRequested = { () => {

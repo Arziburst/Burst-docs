@@ -2,12 +2,12 @@
 import React, { FC } from 'react';
 
 // Components
-import { ErrorBoundary, Markdown } from '../../components';
+import { ErrorBoundary, Markdown } from '../../../components';
 
 // MD file
 import md from './index.md';
 
-const Component__pageName__(pascalCase)Markdown: FC = () => {
+const Component__paragraphName__(pascalCase)Markdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const Component__pageName__(pascalCase)Markdown: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <Component__pageName__(pascalCase)Markdown />
+        <Component__paragraphName__(pascalCase)Markdown />
     </ErrorBoundary>
 );

@@ -13,5 +13,5 @@ export const DocumentationPages = [
     OptionalVSCodeExtensions,
     Deploy,
     Feedback,
-    // MarkerGen use page
+    // MarkerGen use paragraph
 ];

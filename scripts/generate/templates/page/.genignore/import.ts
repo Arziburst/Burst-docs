@@ -1,1 +1,0 @@
-import { __pageName__(pascalCase) } from './__pageName__(pascalCase)';

@@ -180,21 +180,21 @@ CLIGen(ROOT_PATH_OF_YOUR_APPLICATION, [
         ],
     },
     {
-        name:      'Page: /view/pages/__pageName__',
+        name:      'Paragraph: /view/pages/Docs/__paragraphName__',
         templates: [
             {
-                stringsReplacers: '__pageName__',
-                pathToTemplate:   './scripts/generate/templates/page',
-                outputPath:       './src/view/pages/Docs/__pageName__(pascalCase)',
+                stringsReplacers: '__paragraphName__',
+                pathToTemplate:   './scripts/generate/templates/paragraph',
+                outputPath:       './src/view/pages/Docs/__paragraphName__(pascalCase)',
                 markers:          [
                     {
                         pattern:        '// MarkerGen import',
-                        markerTemplate: './scripts/generate/templates/page/.genignore/import.ts',
+                        markerTemplate: './scripts/generate/templates/paragraph/.genignore/import.ts',
                         pathToMarker:   './src/view/pages/Docs/dataDocs.ts',
                     },
                     {
-                        pattern:        '// MarkerGen use page',
-                        markerTemplate: './scripts/generate/templates/page/.genignore/usePage.ts',
+                        pattern:        '// MarkerGen use paragraph',
+                        markerTemplate: './scripts/generate/templates/paragraph/.genignore/useParagraph.ts',
                         pathToMarker:   './src/view/pages/Docs/dataDocs.ts',
                         genDirection:   'before',
                     },

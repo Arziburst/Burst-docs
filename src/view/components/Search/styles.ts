@@ -1,6 +1,9 @@
 // Core
 import styled from 'styled-components';
 
+// Styles
+import { stylesScroll } from '../../containers/ContainerScrollbar/styles';
+
 export const Container = styled.div`
     & * {
         font-size: 18px;
@@ -30,9 +33,11 @@ export const Container = styled.div`
             &.react-autosuggest__suggestions-container--open {
                 position: absolute;
                 width: 100%;
+                max-height: 70vh;
                 padding: 5px;
                 box-shadow: 0 4px 2.4rem -0.4rem #9da5ab;
                 border-radius: ${({ theme }) => theme.app.borderRadius.primary};
+                ${stylesScroll}
             }
             
             & .react-autosuggest__suggestion {

@@ -1,26 +1,30 @@
 // Core
 import styled from 'styled-components';
 
-export const Container = styled.div`
+// Theme
+import { defaultTheme } from '../../../assets';
+
+export const stylesScroll = `
     overflow-y: auto;
 
     ::-webkit-scrollbar {
-         width: 10px;
+            width: 10px;
     }
 
-    /* Track */
     ::-webkit-scrollbar-track {
         background: transparent; 
     }
-    
-    /* Handle */
+
     ::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.scrollbar.primary}; 
-        border-radius: ${({ theme }) => theme.app.borderRadius.primary};
+        background: ${defaultTheme.scrollbar.primary}; 
+        border-radius: ${defaultTheme.app.borderRadius.primary};
     }
 
-    /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: ${({ theme }) => theme.scrollbar.hover}; 
+        background: ${defaultTheme.scrollbar.hover}; 
     }
+`;
+
+export const Container = styled.div`
+    ${stylesScroll}
 `;
