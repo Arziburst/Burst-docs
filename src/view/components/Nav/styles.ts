@@ -13,10 +13,3 @@ export const Ul = styled.ul`
         margin-bottom: 20px;
     }
 `;
-
-export const ContainerSearch = styled.li`
-    @media (min-width: 992px) {
-        display: none;
-    }
-`;
-

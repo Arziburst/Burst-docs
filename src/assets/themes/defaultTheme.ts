@@ -25,11 +25,20 @@ export const defaultTheme = {
         },
     },
     search: {
-        font: {
+        color: {
             primary: 'black',
-            hover:   '#f6b5bc',
-            click:   '#da717d',
+        },
+        hover: {
+            primary: 'black',
+        },
 
+        fontColor: {
+            primary: 'black',
+            click:   '#f7808d',
+        },
+
+        itemColor: {
+            active: '#eeeeee',
         },
     },
     scrollbar: {

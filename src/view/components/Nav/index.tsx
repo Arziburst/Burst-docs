@@ -51,9 +51,9 @@ export const Nav: FC<PropTypes> = ({ ...props }) => {
             { ...props }>
             <ContainerScrollbar style = {{ height: '100%', boxShadow: '0px 4px 0.5rem #9da5ab' }}>
                 <S.Ul>
-                    <S.ContainerSearch>
+                    <li>
                         <Search />
-                    </S.ContainerSearch>
+                    </li>
                     {
                         DocumentationPages.map((element: TypesPage) => {
                             if (!element.option.navLink.subtitles) {

@@ -71,12 +71,3 @@ export const SvgStyled = styled.svg<PropTypes>`
     display: flex;
     height: 30px;
 `;
-
-export const ContainerSearch = styled.div`
-    display: none;
-
-    @media (min-width: 992px) {
-        display: block;
-    }
-`;
-

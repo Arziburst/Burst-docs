@@ -119,9 +119,6 @@ export const Header: FC<PropTypes> = ({ ...props }) => {
 
             {isDocs === true && (
                 <ContainerCenter style = {{ height: '100%' }}>
-                    <S.ContainerSearch>
-                        <Search />
-                    </S.ContainerSearch>
                     <IconMenu
                         isOpen = { togglesRedux.isOpenSidebar }
                         onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }

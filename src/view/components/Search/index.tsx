@@ -53,7 +53,6 @@ export const Search: FC = () => {
                     {
                         ...obj,
                         isTitle: false,
-                        // path:    dataPge.option.navLink.path + `#${obj.id}`,
                         path:    dataPge.option.navLink.path,
                     },
 
@@ -63,7 +62,6 @@ export const Search: FC = () => {
 
         return newData;
     }).flat(1);
-
 
     const [ suggestions, setSuggestions ] = useState<NewData[]>(dataForSearch);
 
@@ -100,7 +98,7 @@ export const Search: FC = () => {
             <AutoSuggest
                 multiSection
                 getSectionSuggestions = { (section: any) => section.items }
-                getSuggestionValue = { (suggestion) => suggestion.id }
+                getSuggestionValue = { (suggestion) => suggestion.text }
                 inputProps = {{
                     placeholder: 'Search',
                     value:       inputSearchRedux,
@@ -112,21 +110,25 @@ export const Search: FC = () => {
                 renderSuggestion = { (suggestion: Item) => {
                     if (suggestion.isTitle) {
                         return (
-                            <S.TitleSuggestion onClick = { () => onClickSuggestion(suggestion) }>
+                            <S.TitleSuggestion>
                                 {suggestion.text}
                             </S.TitleSuggestion>
                         );
                     }
 
                     return (
-                        <S.TextSuggestion onClick = { () => onClickSuggestion(suggestion) }>
+                        <S.TextSuggestion>
                             {suggestion.text}
                         </S.TextSuggestion>
                     );
                 } }
                 suggestions = { suggestions }
+                onSuggestionSelected = { (event,
+                    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+                    onClickSuggestion(suggestion);
+                } }
                 onSuggestionsClearRequested = { () => {
-                    setSuggestions([]);
+                    setSuggestions(dataForSearch);
                     resetInputSearchToInitial();
                 } }
                 onSuggestionsFetchRequested = { ({ value }) => {

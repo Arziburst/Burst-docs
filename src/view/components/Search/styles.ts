@@ -7,11 +7,22 @@ export const Container = styled.div`
     }
     .react-autosuggest__container {
         position: relative;
+        z-index: 1;
 
         & .react-autosuggest__container {
             height: 100%;
         }
-        & .react-autosuggest__input {}
+        & .react-autosuggest__input {
+            padding: 10px;
+            width: 100%;
+            font-family: ${({ theme }) => theme.fontFamily.primary};
+            border: 1px solid ${({ theme }) => theme.search.color.primary};
+            border-radius: ${({ theme }) => theme.app.borderRadius.primary};
+
+            &:hover, &:focus {
+                border-color: ${({ theme }) => theme.search.hover.primary};
+            }
+        }
         & .react-autosuggest__suggestions-container {
             width: auto;
             background-color: ${({ theme }) => theme.app.color.primary};
@@ -26,6 +37,15 @@ export const Container = styled.div`
             
             & .react-autosuggest__suggestion {
                 padding: 10px 20px;
+
+                &--highlighted {
+                    cursor: pointer;
+                    background-color: ${({ theme }) => theme.search.itemColor.active};
+                   
+                    &:active p {
+                        color: ${({ theme }) => theme.search.fontColor.click};
+                    } 
+                }
             }
         }
     }
@@ -38,21 +58,13 @@ export const Container = styled.div`
     }
 `;
 
-const SuggestionHover = styled.p`
-    cursor: pointer;
-    font-family: ${({ theme }) => theme.fontFamily.primary};
-    
-    &:hover, &:focus {
-        color: ${({ theme }) => theme.search.font.hover};
-    }
-    &:active {
-        color: ${({ theme }) => theme.search.font.click};
-    } 
-`;
-
-export const TitleSuggestion = styled(SuggestionHover)`
+export const TitleSuggestion = styled.p`
     font-size: 22px;
-`;
-export const TextSuggestion = styled(SuggestionHover)`
+    font-family: ${({ theme }) => theme.fontFamily.primary};
+    color: ${({ theme }) => theme.search.fontColor.primary};
+    `;
+export const TextSuggestion = styled.p`
     font-size: 18px;
+    font-family: ${({ theme }) => theme.fontFamily.primary};
+    color: ${({ theme }) => theme.search.fontColor.primary};
 `;
