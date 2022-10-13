@@ -9,7 +9,7 @@ import { useTogglesRedux } from '../../../bus/client/toggles';
 import { ContainerScrollbar } from '../../containers';
 
 // Components
-import { ItemNav, Details } from '../';
+import { ItemNav, Details, Search } from '../';
 
 // Context
 import { ContextApp } from '../..';
@@ -51,6 +51,9 @@ export const Nav: FC<PropTypes> = ({ ...props }) => {
             { ...props }>
             <ContainerScrollbar style = {{ height: '100%', boxShadow: '0px 4px 0.5rem #9da5ab' }}>
                 <S.Ul>
+                    <S.ContainerSearch>
+                        <Search />
+                    </S.ContainerSearch>
                     {
                         DocumentationPages.map((element: TypesPage) => {
                             if (!element.option.navLink.subtitles) {

@@ -17,6 +17,7 @@ export const ContainerHeader = styled.header`
 export const ContainerContent = styled.div`
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     gap: 10px;
     
@@ -26,6 +27,7 @@ export const ContainerContent = styled.div`
 `;
 export const ContainerLogos = styled.div`
     display: flex;
+    align-items: center;
     gap: ${gap};
 `;
 
@@ -68,5 +70,13 @@ export const SvgStyled = styled.svg<PropTypes>`
     animation-delay: ${({ animationDelay }) => animationDelay};
     display: flex;
     height: 30px;
+`;
+
+export const ContainerSearch = styled.div`
+    display: none;
+
+    @media (min-width: 992px) {
+        display: block;
+    }
 `;
 

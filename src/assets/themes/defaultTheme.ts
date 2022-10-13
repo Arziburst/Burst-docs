@@ -25,7 +25,12 @@ export const defaultTheme = {
         },
     },
     search: {
-        // todo
+        font: {
+            primary: 'black',
+            hover:   '#f6b5bc',
+            click:   '#da717d',
+
+        },
     },
     scrollbar: {
         primary: '#9da5ab',

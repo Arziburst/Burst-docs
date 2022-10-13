@@ -18,7 +18,15 @@ import * as S from './styles';
 
 // Types
 import * as types from '../../pages/Docs/types';
-type NewData = types.TypesTextLinkSidebar & {isTitle: boolean, path: string} // add path for link!!!!!!!!!!!!
+// type NewData = types.TypesTextLinkSidebar & {isTitle: boolean, path: string}
+interface Item extends types.TypesTextLinkSidebar {
+    isTitle: boolean,
+    path: string
+}
+type NewData = {
+    page: string
+    items: Item[]
+}
 
 export const Search: FC = () => {
     const navigate = useNavigate();
@@ -27,22 +35,26 @@ export const Search: FC = () => {
     const { inputSearchRedux, setInputSearch, resetInputSearchToInitial } = useInputSearchRedux();
 
     const dataForSearch = DocumentationPages.map((dataPge) => {
-        let newData: NewData[] = [
-            {
-                ...dataPge.option.navLink.textLink,
-                isTitle: true,
-                path:    dataPge.option.navLink.path,
-            },
-        ];
+        let newData: NewData = {
+            page:  dataPge.option.navLink.textLink.id,
+            items: [
+                {
+                    ...dataPge.option.navLink.textLink,
+                    isTitle: true,
+                    path:    dataPge.option.navLink.path,
+                },
+            ],
+        };
 
         if (dataPge.option.navLink.subtitles) {
             dataPge.option.navLink.subtitles.forEach((obj) => {
-                newData = [
-                    ...newData,
+                newData.items = [
+                    ...newData.items,
                     {
                         ...obj,
                         isTitle: false,
-                        path:    dataPge.option.navLink.path + `#${obj.id}`,
+                        // path:    dataPge.option.navLink.path + `#${obj.id}`,
+                        path:    dataPge.option.navLink.path,
                     },
 
                 ];
@@ -55,26 +67,40 @@ export const Search: FC = () => {
 
     const [ suggestions, setSuggestions ] = useState<NewData[]>(dataForSearch);
 
-    function getSuggestions(value: string): NewData[] {
-        const result = dataForSearch.filter((data) => {
-            const reg = new RegExp(`${value.toLowerCase()}`);
+    function getSuggestions(value: string): NewData[] | [] {
+        const reg = new RegExp(`${value.toLowerCase()}`);
 
-            return reg.test(data.text.toLowerCase());
+        let newData: any[] = [];
+
+        dataForSearch.forEach((data) => {
+            const result = data.items.filter((item) => reg.test(item.text.toLowerCase()));
+
+            if (result.length > 0) {
+                newData = [
+                    ...newData,
+                    {
+                        ...data,
+                        items: result,
+                    },
+                ];
+            }
         });
 
-        return result;
+        return newData;
     }
 
-    const onClickSuggestion = (suggestion: NewData) => {
+    const onClickSuggestion = (suggestion: Item) => {
         setLinkAnchorAction(suggestion.id);
         setToggleAction({ type: 'isOpenSidebar', value: false });
+        navigate(suggestion.path);
     };
 
     return (
         <S.Container>
             <AutoSuggest
-                highlightFirstSuggestion
-                getSuggestionValue = { (suggestion) => suggestion.text }
+                multiSection
+                getSectionSuggestions = { (section: any) => section.items }
+                getSuggestionValue = { (suggestion) => suggestion.id }
                 inputProps = {{
                     placeholder: 'Search',
                     value:       inputSearchRedux,
@@ -82,7 +108,8 @@ export const Search: FC = () => {
                         setInputSearch(newValue);
                     },
                 }}
-                renderSuggestion = { (suggestion) => {
+                renderSectionTitle = { (section) => section.languages }
+                renderSuggestion = { (suggestion: Item) => {
                     if (suggestion.isTitle) {
                         return (
                             <S.TitleSuggestion onClick = { () => onClickSuggestion(suggestion) }>
@@ -98,10 +125,6 @@ export const Search: FC = () => {
                     );
                 } }
                 suggestions = { suggestions }
-                onSuggestionSelected = { (_, { suggestion }) => {
-                    navigate(suggestion.path);
-                }
-                }
                 onSuggestionsClearRequested = { () => {
                     setSuggestions([]);
                     resetInputSearchToInitial();

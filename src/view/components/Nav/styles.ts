@@ -14,3 +14,9 @@ export const Ul = styled.ul`
     }
 `;
 
+export const ContainerSearch = styled.li`
+    @media (min-width: 992px) {
+        display: none;
+    }
+`;
+
