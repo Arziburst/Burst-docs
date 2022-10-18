@@ -14,6 +14,9 @@ export const defaultTheme = {
         close: 'red',
     },
     sidebar: {
+        color: {
+            primary: '#ffffff',
+        },
         fontColor: {
             primary: '#000',
 

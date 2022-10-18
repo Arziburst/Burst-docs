@@ -34,7 +34,7 @@ const SpinnerStyled = styled.div<PropTypes>`
 
 export const Spinner: FC<PropTypes> = ({ ...props }) => {
     return (
-        <ContainerCenter style = {{ height: '100%' }}>
+        <ContainerCenter style = {{ backgroundColor: 'transparent' }}>
             <SpinnerStyled
                 { ...props }>
                 <div></div>

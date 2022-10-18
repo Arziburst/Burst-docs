@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { stylesScroll } from '../../containers/ContainerScrollbar/styles';
 
 export const Container = styled.div`
+    width: 100%;
+
     & * {
         font-size: 18px;
     }

@@ -24,10 +24,12 @@ export const Markdown: FC<PropTypes> = ({ children }) => {
 
     useLayoutEffect(() => {
         if (linkAnchorRedux && refs) {
+            console.log('useLayoutEffect => refs', refs);
             const elementFound: HTMLElement | undefined = refs.current.find(
                 (element) => element.id === linkAnchorRedux,
             );
             elementFound && elementFound.scrollIntoView({ behavior: 'smooth' });
+            refs.current = [];
             resetLinkAnchorToInitial();
         }
     }, [ linkAnchorRedux ]);

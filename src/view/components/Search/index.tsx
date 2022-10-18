@@ -30,7 +30,7 @@ type NewData = {
 
 export const Search: FC = () => {
     const navigate = useNavigate();
-    const { setToggleAction } = useTogglesRedux();
+    const { togglesRedux, setToggleAction } = useTogglesRedux();
     const { setLinkAnchorAction } = useLinkAnchorRedux();
     const { inputSearchRedux, setInputSearch, resetInputSearchToInitial } = useInputSearchRedux();
 
@@ -87,9 +87,9 @@ export const Search: FC = () => {
         return newData;
     }
 
-    const onClickSuggestion = (suggestion: Item) => {
+    const onSelectSuggestion = (suggestion: Item) => {
         setLinkAnchorAction(suggestion.id);
-        setToggleAction({ type: 'isOpenSidebar', value: false });
+        togglesRedux.isOpenSidebar && setToggleAction({ type: 'isOpenSidebar', value: false });
         navigate(suggestion.path);
     };
 
@@ -102,7 +102,7 @@ export const Search: FC = () => {
                 inputProps = {{
                     placeholder: 'Search',
                     value:       inputSearchRedux,
-                    onChange:    (_, { newValue }) => {
+                    onChange:    (event, { newValue }) => {
                         setInputSearch(newValue);
                     },
                 }}
@@ -125,7 +125,7 @@ export const Search: FC = () => {
                 suggestions = { suggestions }
                 onSuggestionSelected = { (event,
                     { suggestion }) => {
-                    onClickSuggestion(suggestion);
+                    onSelectSuggestion(suggestion);
                 } }
                 onSuggestionsClearRequested = { () => {
                     setSuggestions(dataForSearch);
