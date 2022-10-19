@@ -1,14 +1,22 @@
 export const defaultTheme = {
     name: 'defaultTheme',
     app:  {
-        primary:   '#ffffff',
-        secondary: '#eeeeee',
+        borderRadius: {
+            primary: '5px',
+        },
+        color: {
+            primary:   '#ffffff',
+            secondary: '#eeeeee',
+        },
     },
     burgerMenu: {
         open:  'black',
         close: 'red',
     },
     sidebar: {
+        color: {
+            primary: '#ffffff',
+        },
         fontColor: {
             primary: '#000',
 
@@ -20,7 +28,21 @@ export const defaultTheme = {
         },
     },
     search: {
-        // todo
+        color: {
+            primary: 'black',
+        },
+        hover: {
+            primary: 'black',
+        },
+
+        fontColor: {
+            primary: 'black',
+            click:   '#f7808d',
+        },
+
+        itemColor: {
+            active: '#eeeeee',
+        },
     },
     scrollbar: {
         primary: '#9da5ab',

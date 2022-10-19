@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 // Reducers MarkerGen
 import toggles from '../../bus/client/toggles';
+import inputSearch from '../../bus/client/inputSearch';
 import linkAnchor from '../../bus/client/linkAnchor';
 import authorsGitHub from '../../bus/authorsGitHub/slice';
 import inputFeedback from '../../bus/inputFeedback/slice';
@@ -16,6 +17,7 @@ export const store = configureStore({
     reducer: {
         // MarkerGen add reducer
         toggles,
+        inputSearch,
         linkAnchor,
         authorsGitHub,
         inputFeedback,

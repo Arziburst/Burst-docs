@@ -1,15 +1,16 @@
 // Core
 import React, { FC, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // Bus
 import { useLinkAnchorRedux } from '../../../bus/client/linkAnchor';
 import { useTogglesRedux } from '../../../bus/client/toggles';
 
 // Containers
-import { ContainerScrollbar } from '../../containers';
+import { ContainerScrollbar, ContainerSetHeightWithoutHeader } from '../../containers';
 
 // Components
-import { ItemNav, Details } from '../';
+import { ItemNav, Details, Search } from '../';
 
 // Context
 import { ContextApp } from '../..';
@@ -26,63 +27,68 @@ interface PropTypes extends React.HTMLAttributes<HTMLMenuElement> {}
 
 export const Nav: FC<PropTypes> = ({ ...props }) => {
     const { refs } = useContext(ContextApp);
-    const { setToggleAction } = useTogglesRedux();
+    const { pathname } = useLocation();
+
+    const { togglesRedux, setToggleAction } = useTogglesRedux();
     const { setLinkAnchorAction } = useLinkAnchorRedux();
 
-    const onClickTitle = () => {
+    const onClickTitle = (id: string) => {
         if (refs) {
             refs.current = [];
-            setToggleAction({ type: 'isOpenSidebar', value: false });
+            if (pathname.split('/').at(-1) === id) {
+                console.log(pathname.split('/').at(-1));
+                setLinkAnchorAction(id);
+            }
+            togglesRedux.isOpenSidebar && setToggleAction({ type: 'isOpenSidebar', value: false });
         }
     };
-    const onClickSubtitle = (text:  string) => {
+    const onClickSubtitle = (id:  string) => {
         if (refs) {
             refs.current = [];
-            const re = new RegExp(' ', 'g');
-            const processedText = text.toLowerCase().replace(re, '-');
-            setLinkAnchorAction(processedText);
-            setToggleAction({ type: 'isOpenSidebar', value: false });
+            setLinkAnchorAction(id);
+            togglesRedux.isOpenSidebar && setToggleAction({ type: 'isOpenSidebar', value: false });
         }
     };
-
 
     return (
         <S.Container
             { ...props }>
-            <ContainerScrollbar style = {{ height: '100%', boxShadow: '0px 4px 0.5rem #9da5ab' }}>
-                <S.Ul>
-                    {/* <li>
-                        <Search />
-                    </li> */}
-                    {
-                        DocumentationPages.map((element: TypesPage) => {
-                            if (!element.option.navLink.subtitles) {
+            <ContainerSetHeightWithoutHeader>
+                <ContainerScrollbar style = {{ height: '100%', boxShadow: '0px 4px 0.5rem #9da5ab' }}>
+                    <S.Ul>
+                        <S.ContainerSearch>
+                            <Search />
+                        </S.ContainerSearch>
+                        {
+                            DocumentationPages.map((element: TypesPage) => {
+                                if (!element.option.navLink.subtitles) {
+                                    return (
+                                        <li key = { element.option.navLink.path }>
+                                            <ItemNav
+                                                define
+                                                onclick = { onClickTitle }
+                                                to = { element.option.navLink.path }
+                                                variant = 'h2'>
+                                                {element.option.navLink.textLink.text}
+                                            </ItemNav>
+                                        </li>
+                                    );
+                                }
+
                                 return (
                                     <li key = { element.option.navLink.path }>
-                                        <ItemNav
-                                            define
-                                            onclick = { onClickTitle }
-                                            to = { element.option.navLink.path }
-                                            variant = 'h2'>
-                                            {element.option.navLink.textLink.text}
-                                        </ItemNav>
+                                        <Details
+                                            element = { element.option }
+                                            onClickSubtitle = { onClickSubtitle }
+                                            onClickTitle = { onClickTitle }
+                                        />
                                     </li>
                                 );
-                            }
-
-                            return (
-                                <li key = { element.option.navLink.path }>
-                                    <Details
-                                        element = { element.option }
-                                        onClickSubtitle = { onClickSubtitle }
-                                        onClickTitle = { onClickTitle }
-                                    />
-                                </li>
-                            );
-                        })
-                    }
-                </S.Ul>
-            </ContainerScrollbar>
+                            })
+                        }
+                    </S.Ul>
+                </ContainerScrollbar>
+            </ContainerSetHeightWithoutHeader>
         </S.Container>
     );
 };

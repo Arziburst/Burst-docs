@@ -1,5 +1,5 @@
 // Core
-import React, { createContext, FC, useRef } from 'react';
+import React, { createContext, FC, MutableRefObject, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 // Assets
@@ -19,16 +19,18 @@ type TypesContextApp = {
     refs: {
         current: Array<HTMLElement> | []
     } | null
+    refHeader: MutableRefObject<HTMLDivElement | null> | null
 };
 
-export const ContextApp = createContext<TypesContextApp>({ refs: null });
+export const ContextApp = createContext<TypesContextApp>({ refs: null, refHeader: null });
 
 export const App: FC = () => {
     const refs = useRef([]);
+    const refHeader = useRef(null);
 
     return (
         <ThemeProvider theme = { defaultTheme }>
-            <ContextApp.Provider value = {{ refs: refs }}>
+            <ContextApp.Provider value = {{ refs: refs, refHeader: refHeader }}>
                 <S.AppContainer>
                     <GlobalStyles />
                     <Header />

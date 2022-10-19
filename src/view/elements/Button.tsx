@@ -24,7 +24,7 @@ const ButtonPrimaryStyled = styled.button<PropTypes>`
     cursor: pointer;
     
     background-color: ${({ theme }) => theme.button.primary.backgroundColor.primary};
-    border-radius: 5px;
+    border-radius: ${({ theme }) => theme.app.borderRadius.primary};
     padding: 15px 20px;
     font-size: 16px;
     font-family: ${({ theme }) => theme.fontFamily.primary};

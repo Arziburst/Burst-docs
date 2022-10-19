@@ -1,0 +1,1 @@
+import { __paragraphName__(pascalCase) } from './__paragraphName__(pascalCase)';

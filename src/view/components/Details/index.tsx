@@ -38,7 +38,7 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                 />
                 <ItemNav
                     define
-                    onclick = { onClickTitle }
+                    onclick = { () => onClickTitle(element.navLink.textLink.id) }
                     to = { element.navLink.path }
                     variant = 'h2'>
                     {element.navLink.textLink.text}
@@ -50,7 +50,7 @@ export const Details: FC<PropTypes> = ({ element, onClickTitle, onClickSubtitle,
                         (el) => (
                             <li key = { el.id }>
                                 <ItemNav
-                                    onclick = { () => onClickSubtitle(el.text) }
+                                    onclick = { () => onClickSubtitle(el.id) }
                                     to = { element.navLink.path }
                                     variant = 'h3'>
                                     {el.text}

@@ -1,1 +1,0 @@
-__pageName__(pascalCase),

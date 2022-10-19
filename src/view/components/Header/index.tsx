@@ -1,5 +1,5 @@
 // Core
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Assets
@@ -8,6 +8,9 @@ import burstLogo from '../../../assets/images/burst-logo.png';
 // Data
 import { DocumentationPages } from '../../pages/Docs/dataDocs';
 
+// Context
+import { ContextApp } from '../..';
+
 // Constants
 import { DOCS } from '../../../init';
 
@@ -15,18 +18,28 @@ import { DOCS } from '../../../init';
 import { useTogglesRedux } from '../../../bus/client/toggles';
 
 // Container
-import { ContainerCenter, ContainerHoverScale, Wrapper } from '../../containers';
+import {
+    ContainerCenter,
+    ContainerHoverScale,
+    Wrapper,
+} from '../../containers';
 
 // Elements
-import { Button, IconMenu, Link } from '../../elements';
+import {
+    Button,
+    Link,
+} from '../../elements';
 
 // Styles
 import * as S from './styles';
 
+
 // Types
-interface PropTypes extends React.HTMLAttributes<HTMLDivElement>  {}
+interface PropTypes extends React.HTMLAttributes<HTMLDivElement>  {
+}
 
 export const Header: FC<PropTypes> = ({ ...props }) => {
+    const { refHeader } = useContext(ContextApp);
     const [ isDocs, setIsDocs ] = useState(false);
     const { togglesRedux, setToggleAction } = useTogglesRedux();
     const { pathname } = useLocation();
@@ -113,40 +126,49 @@ export const Header: FC<PropTypes> = ({ ...props }) => {
                     </a>
                 </ContainerCenter>
             </S.ContainerLogos>
-            <ContainerCenter>
-                {isDocs === true && (
-                    <IconMenu
+
+            {isDocs === true && (
+                <ContainerCenter style = {{ height: '100%' }}>
+                    <S.IconMenu
                         isOpen = { togglesRedux.isOpenSidebar }
                         onClick = { () => setToggleAction({ type: 'isOpenSidebar', value: !togglesRedux.isOpenSidebar }) }
                     />
-                ) }
+                </ContainerCenter>
+            ) }
 
-                {isDocs === false && (
+            {isDocs === false && (
+                <ContainerCenter>
                     <Button
                         variant = 'primary'
                         onClick = { () => navigate(`${DocumentationPages[ 0 ].option.navLink.path}`) }>
                         Documentation
                     </Button>
-                )}
-            </ContainerCenter>
+                </ContainerCenter>
+            )}
         </S.ContainerContent>
     );
 
+
     if (isDocs === false) {
         return (
-            <S.ContainerHeader
+            <S.Header
+                ref = { refHeader }
                 style = {{ paddingLeft: 0, paddingRight: 0 }}
                 { ...props }>
-                <Wrapper>
-                    {content()}
-                </Wrapper>
-            </S.ContainerHeader>
+                <S.ContainerHeader>
+                    <Wrapper>
+                        {content()}
+                    </Wrapper>
+                </S.ContainerHeader>
+            </S.Header>
         );
     }
 
     return (
-        <S.ContainerHeader { ...props }>
+        <S.Header
+            ref = { refHeader }
+            { ...props }>
             {content()}
-        </S.ContainerHeader>
+        </S.Header>
     );
 };

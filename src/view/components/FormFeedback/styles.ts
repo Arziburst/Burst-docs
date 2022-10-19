@@ -42,7 +42,7 @@ export const Input = styled.input<PropTypesInputs>`
     width: 100%;
     padding: 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: ${({ theme }) => theme.app.borderRadius.primary};
     font-size: 20px;
     border: 1px solid ${({ theme }) => theme.input.primary.borderColor.primary};
     ${({ theme }) => ({
@@ -62,7 +62,7 @@ export const Textarea = styled.textarea<PropTypesInputs>`
     border: none;
     padding: 15px;
     height: 100px;
-    border-radius: 5px;
+    border-radius: ${({ theme }) => theme.app.borderRadius.primary};
     font-size: 20px;
     border: 1px solid ${({ theme }) => theme.input.primary.borderColor.primary};
     ${({ theme }) => ({

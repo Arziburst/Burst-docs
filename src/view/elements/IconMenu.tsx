@@ -15,10 +15,6 @@ const Button = styled.button<PropTypes>`
     height: 40px;
     cursor: pointer;
     position: relative;
-
-    @media (min-width: 992px) {
-        display: none;
-    }
     
     & span {
         background-color: ${({ theme }) => theme.burgerMenu.open};
