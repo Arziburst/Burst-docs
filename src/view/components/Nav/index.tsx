@@ -36,7 +36,6 @@ export const Nav: FC<PropTypes> = ({ ...props }) => {
         if (refs) {
             refs.current = [];
             if (pathname.split('/').at(-1) === id) {
-                console.log(pathname.split('/').at(-1));
                 setLinkAnchorAction(id);
             }
             togglesRedux.isOpenSidebar && setToggleAction({ type: 'isOpenSidebar', value: false });
