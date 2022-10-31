@@ -12,7 +12,6 @@ export const Container = styled.div`
     }
     .react-autosuggest__container {
         position: relative;
-        z-index: 1;
 
         & .react-autosuggest__container {
             height: 100%;
@@ -29,6 +28,7 @@ export const Container = styled.div`
             }
         }
         & .react-autosuggest__suggestions-container {
+            z-index: 1;
             width: auto;
             background-color: ${({ theme }) => theme.app.color.primary};
             

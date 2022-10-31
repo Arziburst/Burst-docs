@@ -1,5 +1,5 @@
 // MarkerGen import
-import { Test } from './Test';
+import { BurstGenerateFiles } from './BurstGenerateFiles';
 import { Feedback } from './Feedback';
 import { Deploy } from './Deploy';
 import { OptionalVSCodeExtensions } from './OptionalVSCodeExtensions';
@@ -14,6 +14,6 @@ export const DocumentationPages = [
     OptionalVSCodeExtensions,
     Deploy,
     Feedback,
-    Test,
+    BurstGenerateFiles,
     // MarkerGen use paragraph
 ];

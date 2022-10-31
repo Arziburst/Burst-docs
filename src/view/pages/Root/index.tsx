@@ -1,8 +1,11 @@
 // Core
 import React, { FC } from 'react';
 
+// Markdown
+import md from './index.md';
+
 // Components
-import { ErrorBoundary } from '../../components';
+import { ErrorBoundary, Markdown } from '../../components';
 
 // Containers
 import {
@@ -22,78 +25,9 @@ const Root: FC = () => {
                 <Main>
                     <Wrapper>
                         <S.ContainerWithShadowStyled>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
+                            <Markdown>
+                                {md}
+                            </Markdown>
                         </S.ContainerWithShadowStyled>
                     </Wrapper>
                 </Main>

@@ -11,7 +11,11 @@ export const Container = styled(Wrapper)<TypesContainer>`
     width: 100%;
 `;
 export const ContainerWithShadowStyled = styled(ContainerWithShadow)<TypesContainer>`
-    padding: 40px;
+    padding: 20px;
     width: 100%;
     background-color: ${({ theme }) => theme.app.color.primary};
+    
+    @media (min-width: 992px) {
+        padding: 40px;
+    }
 `;

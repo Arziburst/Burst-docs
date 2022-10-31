@@ -7,7 +7,7 @@ import { ErrorBoundary, Markdown } from '../../../components';
 // MD file
 import md from './index.md';
 
-const ComponentTestMarkdown: FC = () => {
+const ComponentBurstGenerateFilesMarkdown: FC = () => {
     return (
         <Markdown>
             {md}
@@ -17,6 +17,6 @@ const ComponentTestMarkdown: FC = () => {
 
 export default () => (
     <ErrorBoundary>
-        <ComponentTestMarkdown />
+        <ComponentBurstGenerateFilesMarkdown />
     </ErrorBoundary>
 );

@@ -8,7 +8,11 @@ export const stylesScroll = `
     overflow-y: auto;
 
     ::-webkit-scrollbar {
-            width: 10px;
+        width: 10px;
+        
+        @media (min-width: 992px) {
+            width: 12px;
+        }
     }
 
     ::-webkit-scrollbar-track {

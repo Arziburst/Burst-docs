@@ -20,10 +20,6 @@ export const useAuthorsGitHub = () => {
         customFetch({
             fetch: () => fetch('https://api.github.com/repos/Arziburst/burst/contributors') })
             .then((data: AuthorGitHub[] | any) => { dispatch(authorsGitHubActions.setAuthorsGitHub(data)); });
-
-        customFetch({
-            fetch: () => fetch('https://api.github.com/users/belartale') })
-            .then((data: AuthorGitHub | any) => { dispatch(authorsGitHubActions.setFirstAuthorGitHub(data)); });
     };
 
     const authorsGitHub = useSelector((state) => state.authorsGitHub);

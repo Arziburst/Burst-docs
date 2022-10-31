@@ -38,7 +38,11 @@ export const ContainerContent = styled.div`
 export const ContainerLogos = styled.div`
     display: flex;
     align-items: center;
-    gap: ${gap};
+    gap: calc(${gap} / 2);
+    
+    @media (min-width: 360px) {
+        gap: ${gap};
+    }
 `;
 
 export const IconMenu = styled(EIconMenu)`
@@ -66,8 +70,12 @@ const AnimationBox = `
     }
 `;
 export const ContainerLogo = styled.div`
-    padding-right: ${gap};
+    padding-right: calc(${gap} / 2);
     border-right: 2px solid grey;
+    
+    @media (min-width: 360px) {
+        padding-right: ${gap};
+    }
 `;
 
 export const ImageStyled = styled.img<PropTypes>`
