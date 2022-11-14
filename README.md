@@ -70,7 +70,7 @@ Burst has original architecture. Before installing, you can see files and folder
 
 ![image](https://user-images.githubusercontent.com/33392042/201114163-e8c39554-d367-492d-8704-f8863383a9ca.png)
 
-First important the folder is [`scripts`](https://github.com/Arziburst/Burst/tree/master/scripts), that the folder has folders for Webpack and generate files. If you want, you can change Webpack's config for your project and generate's config.
+First important the folder is [`scripts`](https://github.com/Arziburst/Burst/tree/master/scripts), that folder has folders for Webpack and generate files. If you want, you can change Webpack's config for your project and generate's config.
 
 ![image](https://user-images.githubusercontent.com/33392042/201121086-1a355bee-b208-4e8d-a703-171958558d69.png)
 
@@ -78,7 +78,7 @@ Next important folder is [`src`](https://github.com/Arziburst/Burst/tree/master/
 
 ![image](https://user-images.githubusercontent.com/33392042/201333507-8c704c45-d79d-4a9b-9953-e07c4deaf46f.png)
 
-Then folder [`view`](https://github.com/Arziburst/Burst/tree/master/src/view) of [`src`](https://github.com/Arziburst/Burst/tree/master/src). We have to abstract the code and that the folder for only UI. This gives us a clear structure that we can easily control UI.
+Then folder [`view`](https://github.com/Arziburst/Burst/tree/master/src/view) of [`src`](https://github.com/Arziburst/Burst/tree/master/src). We have to abstract codes and that folder for only UI. This gives us a clear structure that we can easily control UI.
 
 ![image](https://user-images.githubusercontent.com/33392042/201333741-1ab27311-e845-4517-b43c-81b92fe6a091.png)
 
@@ -86,7 +86,7 @@ The folder has [`index.tsx`](https://github.com/Arziburst/Burst/blob/master/src/
 
 ![image](https://user-images.githubusercontent.com/33392042/201338109-b5eb18a4-a97d-4341-8f2a-b0db15d48831.png)
 
-If you open that folder, you can see that routes are two types [`Public`](https://github.com/Arziburst/Burst/blob/master/src/view/routes/Public.tsx) and [`Private`](https://github.com/Arziburst/Burst/blob/master/src/view/routes/Private.tsx). Different routes need to split pages for public and private. Also, the routes consists of `<Route />` to render components. It looks like [this...](https://github.com/Arziburst/Burst/blob/master/src/view/routes/Public.tsx)
+If you open that folder, you can see those routes are two types, [`Public`](https://github.com/Arziburst/Burst/blob/master/src/view/routes/Public.tsx) and [`Private`](https://github.com/Arziburst/Burst/blob/master/src/view/routes/Private.tsx). Different routes need to split pages for public and private. Also, the routes consist of `<Route />` to render components. It looks like [this...](https://github.com/Arziburst/Burst/blob/master/src/view/routes/Public.tsx)
 
 ```typescript
 // ./src/view/routes/Public.tsx
@@ -113,11 +113,55 @@ export const Public: FC = () => {
 };
 ```
 
-**Note:** sometimes you will see comments with the word [`MarkerGen`](https://github.com/Arziburst/Burst/blob/84d2b7a6f9fa6bd383dd4c25fa666576d43fe184/src/view/routes/Public.tsx#L18). Those comments are needed to generate ([`./scripts/generate/index.ts`](https://github.com/Arziburst/Burst/blob/master/scripts/generate/index.ts)) and if you want to all work right, you have to don't remove those comments.
+**Note:** sometimes you will see comments with the word [`MarkerGen`](https://github.com/Arziburst/Burst/blob/84d2b7a6f9fa6bd383dd4c25fa666576d43fe184/src/view/routes/Public.tsx#L18). Those comments are needed to generate ([./scripts/generate/index.ts](https://github.com/Arziburst/Burst/blob/master/scripts/generate/index.ts)) and if you want to all work right, you have to don't remove those comments.
 
 Then the folder [`pages`](https://github.com/Arziburst/Burst/tree/master/src/view/pages). One has pages, for example [`Root`](https://github.com/Arziburst/Burst/tree/master/src/view/pages/Root). Those pages can use [`components`](https://github.com/Arziburst/Burst/tree/master/src/view/components), [`containers`](https://github.com/Arziburst/Burst/tree/master/src/view/containers) and [`elements`](https://github.com/Arziburst/Burst/tree/master/src/view/elements). The file [`index.tsx`](https://github.com/Arziburst/Burst/blob/master/src/view/pages/Root/index.tsx) need for UI and [`styles.ts`](https://github.com/Arziburst/Burst/blob/master/src/view/pages/Root/styles.ts) need for styles. The Burst use to library [`styled-components`](https://styled-components.com/).
 
 ![image](https://user-images.githubusercontent.com/33392042/201361260-db116622-66f8-4b11-a740-d5fa2756f19f.png)
+
+Next folders are [`components`](https://github.com/Arziburst/Burst/tree/master/src/view/components), [`containers`](https://github.com/Arziburst/Burst/tree/master/src/view/containers), [`elements`](https://github.com/Arziburst/Burst/tree/master/src/view/elements) and these folders are divided into logical entities. The folder [`components`](https://github.com/Arziburst/Burst/tree/master/src/view/components) are independent and reusable block of JSX. The folder [`containers`](https://github.com/Arziburst/Burst/tree/master/src/view/containers) are independent and reusable containers, container can wrap `components` or `elements`. The folder  [`elements`](https://github.com/Arziburst/Burst/tree/master/src/view/elements) as components, but element it only part of component, it can be button or input. 
+
+![image](https://user-images.githubusercontent.com/33392042/201369806-3248e7fd-2994-424e-8815-7a92bb6ff0d9.png)
+
+The folder [`assets`](https://github.com/Arziburst/Burst/tree/master/src/assets) for images, fonts and [`themes`](https://github.com/Arziburst/Burst/tree/master/src/assets/themes) (global variables, example colors or styles)
+
+![image](https://user-images.githubusercontent.com/33392042/201625132-1962164c-29b4-4183-9c9e-e985fd53891f.png)
+
+
+**Note:** if you want to use images, you have to import they in `ts` or `tsx` file, [example](https://github.com/Arziburst/Burst/blob/e233ca7683eba08adc08676997e716124efdad86/src/view/elements/HelloBurst.tsx#L48).
+
+```typescript
+import yourImage from "assets/images/YOUR_IMAGE.png";
+
+const Component = () => {
+    return (
+        <div>
+            <img src = { yourImage } />
+        </div>
+    );
+};
+```
+
+Or if you need to use that image in several files, you have to import image in [`./src/view/inxed.tsx`](https://github.com/Arziburst/Burst/blob/master/src/view/index.tsx), then in files use next path `assets/YOUR_IMAGE.png`
+
+```typescript
+<img src = "assets/YOUR_IMAGE.png" />
+```
+
+Next the folder [`tools`](https://github.com/Arziburst/Burst/tree/master/src/tools), this folder consist of custom hooks and utils. For example, it can be utils for validation inputs.
+
+![image](https://user-images.githubusercontent.com/33392042/201644142-c2e70d68-7f84-4bf9-9301-9db1f2531805.png)
+
+Next important folder is [`init`](https://github.com/Arziburst/Burst/blob/master/src/init), this folder has folder [`@types`](https://github.com/Arziburst/Burst/tree/master/src/init/@types) for types. File [`constants.ts`
+](https://github.com/Arziburst/Burst/blob/master/src/init/index.ts) consists of global constants, for example [`name application`](https://github.com/Arziburst/Burst/blob/e233ca7683eba08adc08676997e716124efdad86/src/init/constants.ts#L5) or [`URL for server`](https://github.com/Arziburst/Burst/blob/e233ca7683eba08adc08676997e716124efdad86/src/init/constants.ts#L2). If you have global constants, you have to keep here your constants.
+
+![image](https://user-images.githubusercontent.com/33392042/201649148-5bdbc1c5-10a9-4938-a02f-0cc54acc72ae.png)
+
+The folder [`redux`](https://github.com/Arziburst/Burst/tree/master/src/init/redux), this folder consists of Redux store that holds the complete state tree of application from the folder [`bus`](https://github.com/Arziburst/Burst/tree/master/src/bus), root Saga aggregates multiple Sagas to a single entry point for the sagaMiddleware to run and Thunk's middleware.
+
+![image](https://user-images.githubusercontent.com/33392042/201657040-5e4dc0f6-cc8f-4ca8-8862-2807b61b821f.png)
+
+Last the folder [`bus`](https://github.com/Arziburst/Burst/tree/master/src/bus), it is entity, slice of store. This folder has two kinds of entity [`client`](https://github.com/Arziburst/Burst/tree/master/src/bus/client), this entity for local actions, example switch sidebar for mobile or switch action online user. And entity for remotely actions (you have to use `npm run gen` for creating new entity).
 
 ## Deploy
 
