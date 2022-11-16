@@ -70,7 +70,7 @@ Burst has original architecture. Before installing, you can see files and folder
 
 ![image](https://user-images.githubusercontent.com/33392042/201114163-e8c39554-d367-492d-8704-f8863383a9ca.png)
 
-First important the folder is [`scripts`](https://github.com/Arziburst/Burst/tree/master/scripts), that folder has folders for Webpack and generate files. If you want, you can change Webpack's config for your project and generate's config.
+First important the folder is [`scripts`](https://github.com/Arziburst/Burst/tree/master/scripts), this folder has folders for Webpack and generate files. If you want, you can change Webpack's config for your project and generate's config.
 
 ![image](https://user-images.githubusercontent.com/33392042/201121086-1a355bee-b208-4e8d-a703-171958558d69.png)
 
@@ -142,7 +142,7 @@ const Component = () => {
 };
 ```
 
-Or if you need to use that image in several files, you have to import image in [`./src/view/inxed.tsx`](https://github.com/Arziburst/Burst/blob/master/src/view/index.tsx), then in files use next path `assets/YOUR_IMAGE.png`
+Or if you need to use that image in several files, you have to import image once in `ts` file, then where you use image, you have to use next path `assets/YOUR_IMAGE.png`.
 
 ```typescript
 <img src = "assets/YOUR_IMAGE.png" />
@@ -161,7 +161,7 @@ The folder [`redux`](https://github.com/Arziburst/Burst/tree/master/src/init/red
 
 ![image](https://user-images.githubusercontent.com/33392042/201657040-5e4dc0f6-cc8f-4ca8-8862-2807b61b821f.png)
 
-Last the folder [`bus`](https://github.com/Arziburst/Burst/tree/master/src/bus), it is entity, slice of store. This folder has two kinds of entity [`client`](https://github.com/Arziburst/Burst/tree/master/src/bus/client), this entity for local actions, example switch sidebar for mobile or switch action online user. And entity for remotely actions (you have to use `npm run gen` for creating new entity).
+Last the folder [`bus`](https://github.com/Arziburst/Burst/tree/master/src/bus), it is entity, slice of store. This folder has two kinds of entities, the [`client`](https://github.com/Arziburst/Burst/tree/master/src/bus/client) entity for local actions, example switch sidebar for mobile or switch action online user. And entities for remotely actions (you have to use `npm run gen` for creating new entity).
 
 ## Deploy
 
