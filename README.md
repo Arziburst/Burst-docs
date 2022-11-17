@@ -163,6 +163,26 @@ The folder [`redux`](https://github.com/Arziburst/Burst/tree/master/src/init/red
 
 Last the folder [`bus`](https://github.com/Arziburst/Burst/tree/master/src/bus), it is entity, slice of store. This folder has two kinds of entities, the [`client`](https://github.com/Arziburst/Burst/tree/master/src/bus/client) entity for local actions, example switch sidebar for mobile or switch action online user. And entities for remotely actions (you have to use `npm run gen` for creating new entity).
 
+## Generate files
+
+If you want to create new files, you have to use [`npm run gen`](https://github.com/Arziburst/Burst/blob/e233ca7683eba08adc08676997e716124efdad86/package.json#L21). Example component...
+
+![gif](https://user-images.githubusercontent.com/33392042/202209191-2aa0d862-6829-47fc-ae43-cd729ad00e5d.gif)
+
+You don't have to worry about exporting the entity, Burst itself does the re-export and additional steps if needed. If you want to use Redux with Thunk or Saga, you can use `npm run gen`. Burst will connect Thunk or Saga to your project.
+
+### All entities:
+
+```sh
+Entity:     ./src/bus/__entityName__
+Saga:       ./src/bus/__entityName__/saga
+Thunk:      ./src/bus/__entityName__/thunk
+Component:  ./src/view/components/__componentName__
+Element:    ./src/view/elements/__elementName__
+Container:  ./src/view/containers/__containerName__
+Page:       ./src/view/pages/__pageName__
+```
+
 ## Deploy
 
 ```sh
